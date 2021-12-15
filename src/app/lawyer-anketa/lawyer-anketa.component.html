@@ -1,0 +1,31 @@
+<app-header></app-header>
+      <div class="inner-wrap">
+        <div class="container">
+          <div class="breadcrumbs">
+              <br/>
+            <!-- <a href="index2.html">Юрист Онлайн</a>
+            <span>Личный кабинет пользователя</span> -->
+          </div>
+          <div class="pers-cab pers-cab--dans">
+            <div class="contaoner">
+              <div class="pers-cab__wrap">
+                <app-jurist-side-menu [tabindex]='0'></app-jurist-side-menu>
+                <app-lawyer-anketa-item *ngIf = 'lawyerData' [alwaysOpen]='true' [lawyerData]='lawyerData'></app-lawyer-anketa-item>
+                <div *ngIf ='!lawyerData' class="pers-cab__body">
+                    <div class="notification-container">
+                        <div class="notification-item">
+                          Заполните анкету для начала работы!!!
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div hidden>
+        <div class="popup popup--item" id="item-popup">
+          <div class="popup__body"></div>
+        </div>
+      </div>
+<app-footer></app-footer>

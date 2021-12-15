@@ -1,0 +1,12 @@
+@import '../app-styling.scss';
+
+.list-opt{
+    flex-direction: column;
+    overflow:auto;
+    max-width:15em;
+    height:4.5em;
+}
+.close{
+    margin-right:1em;
+    margin-left:1em;
+}

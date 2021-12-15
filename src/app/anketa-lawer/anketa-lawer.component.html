@@ -1,0 +1,92 @@
+<form action="" class="form" [formGroup]="anketaLawyer">
+    <div class="dans-block">
+      <div class="simp-block">
+        <div class="simp-block__img">
+          <img src="../assets/img/man.svg" alt="">
+        </div>
+        <div class="simp-block__text">
+          Выбор специализации
+        </div>
+      </div>
+      <div class="dans-block__items">
+        <div class="input-block">
+          <span>Выберите специализыцию:</span>
+          <div class="form__select">
+            <mat-select [(value)]="sub" (selectionChange)="additionalSelect()" multiple>
+              <mat-option *ngFor="let categ of categories" [value]="categ">{{categ}}</mat-option>
+            </mat-select>
+          </div>
+          <div *ngIf="touched && !sub.length" class="invalid-data">
+            <div>*Выберите специализации</div>
+          </div>
+        </div>
+      </div>
+      <div class="simp-block">
+        <div class="simp-block__img">
+          <img src="../assets/img/icon1.svg" alt="">
+        </div>
+        <div class="simp-block__text">
+          Образование
+        </div>
+      </div>
+      <div class="dans-block__items">
+        <div class="input-block">
+          <span>Название вуза:</span>
+          <div class="input-block__field">
+            <input type="text" formControlName="university" name="vuz" value="МГУ">
+            <div *ngIf="anketaLawyer.controls.university.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaLawyer.controls.university.hasError('required')">*обязательное поле</div>
+              <div *ngIf="anketaLawyer.controls.university.hasError('maxlength')">*максимум 50 сиволов</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <!-- <span>Дата окончания вуза:</span> -->
+          <div class="input-block__field">
+            <!-- <div class="input-block__icon">
+              <img src="../assets/img/calendar.svg" alt="" width="21" height="21">
+            </div> -->
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" style="border:none" placeholder="Дата окончания вуза:" formControlName="dateOfComplition">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <!-- <input type="date" formControlName="dateOfComplition" name="date" value=""> -->
+            <div *ngIf="anketaLawyer.controls.dateOfComplition.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaLawyer.controls.dateOfComplition.hasError('required')">*неправильная дата</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <span>Стаж работы юристом (лет):</span>
+          <div class="input-block__field">
+            <input type="number" formControlName="expireance" name="stg">
+            <div *ngIf="anketaLawyer.controls.expireance.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaLawyer.controls.expireance.hasError('required')">*обязательное поле</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="dans-block__center">
+        <span>Коллегия адвокатов при поддержке гос фонда федерации джедаев</span>
+        <div class="info-item">
+          <div class="simp-block simp-block--big">
+               <mat-checkbox color="primary" formControlName="lawyerLicence">Лицензия адвоката</mat-checkbox>
+             <!-- <div class="simp-block__img">
+              <img src="../assets/img/icon6.svg" alt="">
+            </div> -->
+            <!-- <div class="simp-block__text">
+              Лицензия адвоката
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="dans-block__textarea-big">
+        <textarea formControlName="resume" name="resume" id="" cols="30" rows="10"></textarea>
+        <div *ngIf="anketaLawyer.controls.resume.invalid && touched" class="invalid-data">
+          <div *ngIf="anketaLawyer.controls.resume.hasError('required')">*обязательное поле</div>
+          <div *ngIf="anketaLawyer.controls.resume.hasError('maxlength')">*максимум 10000 сиволов</div>
+        </div>
+      </div>
+    </div>
+  </form>

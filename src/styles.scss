@@ -1,1 +1,480 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$jurist-online-primary: mat-palette($mat-indigo);
+$jurist-online-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$jurist-online-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$jurist-online-theme: mat-light-theme($jurist-online-primary, $jurist-online-accent, $jurist-online-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($jurist-online-theme);
+
 /* You can add global styles to this file, and also import other style files */
+$font-stack: "Roboto", "Helvetica Neue", sans-serif;
+$font-second: "Nunito", "Helvetica Neue", sans-serif;
+
+@import "~bootstrap/scss/bootstrap";
+@import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.carousel.scss';
+@import '../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default.scss';
+@import '../node_modules/slick-carousel/slick/slick.css';
+@import '../node_modules/magnific-popup/src/css/main';
+@import '../node_modules/select2/dist/css/select2.min.css';
+
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto Bold'), local('Roboto-Bold'),
+	url('../fonts/Roboto-Bold.woff2') format('woff2'),
+	url('../fonts/Roboto-Bold.woff2') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto'), local('Roboto-Regular'),
+	url('../fonts/Roboto-Regular.woff') format('woff2'),
+	url('../fonts/Roboto-Regular.woff2') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto Light'), local('Roboto-Light'),
+	url('../fonts/Roboto-Light.woff2') format('woff2'),
+	url('../fonts/Roboto-Light.woff2') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto Medium'), local('Roboto-Medium'),
+	url('../fonts/Roboto-Medium.woff2') format('woff2'),
+	url('../fonts/Roboto-Medium.woff2') format('woff');
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Roboto';
+	src: local('Roboto Black'), local('Roboto-Black'),
+	url('../fonts/Roboto-Black.woff2') format('woff2'),
+	url('../fonts/Roboto-Black.woff2') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-BoldItalic.woff2') format('woff2'),
+	url('../fonts/Nunito-BoldItalic.woff') format('woff');
+	font-weight: bold;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-ExtraBoldItalic.woff2') format('woff2'),
+	url('../fonts/Nunito-ExtraBoldItalic.woff') format('woff');
+	font-weight: 800;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-ExtraBold.woff2') format('woff2'),
+	url('../fonts/Nunito-ExtraBold.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-Bold.woff2') format('woff2'),
+	url('../fonts/Nunito-Bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-Black.woff2') format('woff2'),
+	url('../fonts/Nunito-Black.woff') format('woff');
+	font-weight: 900;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-ExtraLight.woff2') format('woff2'),
+	url('../fonts/Nunito-ExtraLight.woff') format('woff');
+	font-weight: 200;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-BlackItalic.woff2') format('woff2'),
+	url('../fonts/Nunito-BlackItalic.woff') format('woff');
+	font-weight: 900;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-SemiBoldItalic.woff2') format('woff2'),
+	url('../fonts/Nunito-SemiBoldItalic.woff') format('woff');
+	font-weight: 600;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-Light.woff2') format('woff2'),
+	url('../fonts/Nunito-Light.woff') format('woff');
+	font-weight: 300;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-ExtraLightItalic.woff2') format('woff2'),
+	url('../fonts/Nunito-ExtraLightItalic.woff') format('woff');
+	font-weight: 200;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-LightItalic.woff2') format('woff2'),
+	url('../fonts/Nunito-LightItalic.woff') format('woff');
+	font-weight: 300;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-Italic.woff2') format('woff2'),
+	url('../fonts/Nunito-Italic.woff') format('woff');
+	font-weight: normal;
+	font-style: italic;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-Regular.woff2') format('woff2'),
+	url('../fonts/Nunito-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Nunito';
+	src: url('../fonts/Nunito-SemiBold.woff2') format('woff2'),
+	url('../fonts/Nunito-SemiBold.woff') format('woff');
+	font-weight: 600;
+	font-style: normal;
+	font-display: swap;
+}
+
+$baseFontSize : 16;
+@function rem($pixels, $context: $baseFontSize) {
+	@if (unitless($pixels)) {
+		$pixels: $pixels * 1px;
+	}
+
+	@if (unitless($context)) {
+		$context: $context * 1px;
+	}
+
+	@return $pixels / $context * 1rem;
+}
+
+input, button {
+	&:focus {
+		outline: none;
+	}
+}
+
+html {
+	height: 100%;
+	width: 100%;
+}
+
+select {
+	width: 100%;
+}
+
+input {
+	width: 100%;
+}
+
+textarea {
+	width: 100%;
+	resize: none;
+	padding: 10px;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+body {
+	font-family: $font-stack;
+	margin: 0;
+	position: relative;
+	font-size: rem(16);
+	box-sizing: border-box;
+	font-weight: normal;
+	overflow: auto;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	opacity: 1;
+
+	&.show {
+		opacity: 1;
+		transition: opacity 0.1s ease;
+	}
+
+	&.ohidden {
+		overflow: hidden !important;
+	}
+}
+
+img {
+	display: inline-block;
+	max-width: 100%;
+}
+
+svg {
+	display: block;
+}
+
+div, input, textarea, header, footer {
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+
+	&:hover {
+		transition: color 0.2s ease;
+		text-decoration: none;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 1432px;
+	margin: 0 auto;
+	padding: 0 1rem;
+
+	@media(max-width: 640px) {
+		padding: 0 10px;
+	}
+
+	&--mid {
+		max-width: 1380px;
+
+		@media(max-width: 1600px) {
+			max-width: 1540px;
+		}
+	}
+}
+
+h3 {
+	font-size: 48px;
+	text-transform: uppercase;
+	color: #000;
+	line-height: 1.1;
+	max-width: 640px;
+	margin-bottom: 40px;
+
+	span {
+		font-weight: bold;
+	}
+
+	@media(max-width: 640px) {
+		font-size: 41px;
+		margin-bottom: 18px;
+	}
+
+	@media(max-width: 420px) {
+		font-size: 32px;
+	}
+}
+
+p {
+	width: 95%;
+	font-size: 18px;
+	line-height: 1.8;
+	color: #151515;
+	margin-bottom: 34px;
+
+	@media(max-width: 1365px) {
+		font-size: 16px;
+		margin-bottom: 20px;
+	}
+
+	@media(max-width: 1024px) {
+		font-size: 14px;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+h2 {
+	font-size: 72px;
+	text-transform: uppercase;
+	color: #000;
+	line-height: 0.95;
+	margin-bottom: 40px;
+	font-weight: bold;
+
+	span {
+		color: #8cc63e;
+	}
+
+	@media(max-width: 640px) {
+		font-size: 60px;
+		margin-bottom: 18px;
+	}
+
+	@media(max-width: 420px) {
+		font-size: 32px;
+	}
+}
+
+select {
+	background-color: transparent;
+	color: #ffffff;
+	border: none;
+
+	&:focus {
+		outline: none;
+	}
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: #d8d8d8;
+	border-radius: 7px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: #33485D;
+	border-radius: 7px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #33485D;
+	border-radius: 7px;
+}
+
+
+.mat-step-icon .mat-icon, .mat-step-icon-content {
+    top: 30% !important;
+    transform: scale(1.5) !important;
+}
+  .mat-step-header .mat-step-icon {
+    background-color:lightgrey;
+    color: #fff;
+    height: 3em;
+    width:3em;
+    pointer-events:none;
+}
+.mat-step-header .mat-step-icon.mat-step-icon-selected {
+    background-color: #30A6EA;
+    color: #fff;
+    height: 3em;
+    width:3em;
+    pointer-events:none;
+}
+.mat-step-header {
+  pointer-events: none;
+}
+.mat-stepper-horizontal {
+    border-radius: 5px;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.angular-editor {
+.angular-editor-wrapper {
+	.angular-editor-textarea {
+	  padding: 0.5rem 1.5rem 1rem!important;;
+	}
+  }
+}
+div.owl-next{
+	height: 100px;
+	width:100px;
+	position: absolute;
+	background-color: transparent;
+	cursor: pointer;
+	top: 10%;
+	left:-10em;
+  }
+
+  div.owl-prev{
+	height: 100px;
+	width:100px;
+	position: absolute;
+	background-color: transparent;
+	cursor: pointer;
+	top: 10%;
+	right:-10em;
+	transform: rotate(180deg);
+  }
+  signature-pad{
+	border: 2x solid #065684;
+	border-radius: 2px;
+    box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+  

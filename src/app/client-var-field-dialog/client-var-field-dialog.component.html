@@ -1,0 +1,127 @@
+  <div class="popup popup--ansv" id="item-answer">
+    <button class="close"  (click)="onNoClick()">X</button>
+    <form [formGroup]="fieldFormGroupe">
+      <div class="popup__body">
+        <div class="popup__title">
+          Определения поля для заполнения клиентом
+        </div>
+        <div class="popup__form">
+          <div class="ansv-top">
+            <div class="ansv-top__item">
+              <div class="info-item" style="flex-wrap: wrap;">
+                <div class="simp-block">
+                  <div class="simp-block__img">
+                    <img src="../../assets/img/icon1.svg" alt="" />
+                  </div>
+                </div>
+                <div class="info-item__body">
+                    <mat-form-field fxFlex>
+                      <mat-label>тип поля</mat-label>
+                      <mat-select  (selectionChange)="selectType($event.value)" formControlName="fieldType">
+                        <mat-option *ngFor="let type of fieldTypes;  let last=last;" [value]="type.value">
+                          {{type.label}}
+                        </mat-option>
+                      </mat-select>
+                  </mat-form-field>
+                </div>
+                <div *ngIf="fieldFormGroupe.controls.fieldType.invalid && touched" class="invalid-data">
+                  <div *ngIf="fieldFormGroupe.controls.fieldType.hasError('required')">*обязательное поле</div>
+                </div>
+              </div>
+            </div>
+            <div class="ansv-top__item">
+              <div class="info-item" style="flex-wrap: wrap;">
+                <div class="simp-block">
+                  <div class="simp-block__img">
+                    <img src="../../assets/img/icon3.svg" alt="" />
+                  </div>
+                </div>
+                <div class="info-item__body">
+                  <mat-form-field fxFlex>
+                    <mat-label>Имя поля</mat-label>
+                    <input matInput placeholder="Введите название поля" formControlName="fieldName">
+                  </mat-form-field>
+                </div>
+                <div *ngIf="fieldFormGroupe.controls.fieldName.invalid && touched" class="invalid-data">
+                  <div *ngIf="fieldFormGroupe.controls.fieldName.hasError('required')">*обязательное поле</div>
+                </div>
+                <div *ngIf="sameNameError" class="invalid-data">*выбранное имя поля уже существует</div>
+              </div>
+            </div>
+            <div class="ansv-top__item">
+              <div class="info-item" style="flex-wrap: wrap;">
+                <div class="simp-block">
+                  <div class="simp-block__img">
+                    <img src="../../assets/img/icon2.svg" alt="" />
+                  </div>
+                </div>
+                <div class="info-item__body">
+                  <mat-form-field>
+                    <mat-label>Пример значения</mat-label>
+                    <input matInput placeholder="Введите значения для примера" formControlName="exampleValue">
+                  </mat-form-field>
+                </div>
+                <div *ngIf="fieldFormGroupe.controls.exampleValue.invalid && touched" class="invalid-data">
+                  <div *ngIf="fieldFormGroupe.controls.exampleValue.hasError('required')">*обязательное поле</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ansv-top" *ngIf="isLast">
+            <div class="info-item" style="flex-wrap: wrap;">
+              <div class="simp-block">
+                <div class="simp-block__img">
+                  <img src="../../assets/img/icon2.svg" alt="" />
+                </div>
+              </div>
+              <div class="info-item__body">
+                <mat-form-field>
+                  <mat-label>Введите опцию для выподающего листа</mat-label>
+                  <input matInput [(ngModel)]="inputVal" placeholder="Введите значения" formControlName="exampleValue">
+                </mat-form-field>
+              </div>
+              <div *ngIf="sameOptionError" class="invalid-data">*выбранное значение уже существует</div>
+              <div *ngIf="emptyOptionError" class="invalid-data">*выбранное значение пустое</div>
+            </div>
+            <div style="margin: auto;">
+              <button type="submit"  (click)="addOption()" class="button button--medium button--blue button--arrow">
+                <span class="button__text">
+                  Добавить вариант
+                </span>
+                <span class="button__icon"></span>
+              </button>
+            </div>
+          </div>
+          <div *ngIf="isLast" class="list-opt">
+                <div *ngFor="let option of options;let i=index;" >
+                <button class="close"  (click)="removeOpt(i)">X</button>
+                 {{i+1}} : {{option}}
+              </div>
+          </div>
+          <div class="popup__textarea">
+            <span>Краткое описание поля:</span>
+            <textarea formControlName="fieldDescription" placeholder="Краткое описания предназначения поля для пользователя" name="hthtrh"></textarea>
+            <div *ngIf="fieldFormGroupe.controls.fieldDescription.invalid && touched" class="invalid-data">
+              <div *ngIf="fieldFormGroupe.controls.fieldDescription.hasError('required')">*обязательное поле</div>
+            </div>
+          </div>
+          <div class="popup__form-bottom">
+            <button type="submit" (click)="onNoClick()"  class="button button--save button--blue">
+              <div class="button__text">
+                Закрыть
+              </div>
+              <span class="button__icon"></span>
+            </button>
+            <button type="button" (click)="closeDialog()" class="button button--save button--blue js-save">
+              <span class="button__image">
+                <img src="../assets/img/save.svg" alt="" width="20" height="20">
+              </span>
+              <span class="button__text">
+                Сохранить
+                  </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>  
+  </div>

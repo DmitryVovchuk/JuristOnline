@@ -1,0 +1,77 @@
+<div class="tab-inner">
+    <div class="tab-inner__body">
+        <div class="tab-inner__block js-content-tab active">
+            <div *ngIf="lawyerDocuments.length">
+                <div class="table-top" *ngIf="showSearchBar">
+                    <div class="table-top__selects">
+                    <form action="" class="form" >
+                        <div class="form__select">
+                        <select name="name1" id="" class="js-anket-select js-select">
+                            <option value="reg">Специализация</option>
+                            <option value="ukuiy">Специализация</option>
+                        </select>
+                        </div>
+                        <div class="form__select">
+                        <select name="name2" id="" class="js-anket-select js-select">
+                            <option value="hliuliut">Специализация</option>
+                            <option value="hliulith">Специализация</option>
+                        </select>
+                        </div>
+                        <div class="form__select">
+                        <select name="name3" id="" class="js-anket-select js-select">
+                            <option value="heeetht">Специализация</option>
+                            <option value="hthweewt">Специализация</option>
+                        </select>
+                        </div>
+                    </form>
+                    </div>
+                </div>
+                <div class="js-ankets js-ankets-table">
+                    <div class="table-wrap table-wrap--wthdrop">
+                    <div class="js-table-drop" style="max-height:41em;overflow: auto;">
+                        <table class="first">
+                        <thead>
+                            <tr>
+                            <th></th>
+                            <th>Тип</th>
+                            <th>Описание</th>
+                            <th>Цена</th>
+                            <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of lawyerDocuments" (click)="showDocumentContent(item)" [ngStyle]="{'background-color': item.isDocumentNew ? 'lightgrey' : 'white'}">
+                            <td>
+                                <app-image-selector [category]="item.type"></app-image-selector>
+                            </td>
+                            <td>
+                                {{item.subtype}}
+                            </td>
+                            <td                             
+                                matTooltip="{{item.discription}}"
+                                matTooltipClass="fontSize">
+                                <span>
+                                    {{item.title}}
+                                <span class="table-arr">
+                                    <img src="../../assets/img/white-arr.svg" alt="" />
+                                </span>
+                                </span>
+                            </td>
+                            <td>{{item.price}}</td>
+                            <td>
+                                <div *ngIf="isLawyerMode" class="quest-block__icon" (click)="editDoc($event,item)" matTooltip="Редактировать документ" matTooltipClass="fontSize" style="margin-left: auto;">
+                                    <img src="../assets/img/quest.svg" alt="">
+                                </div>
+                                <img *ngIf = "!isLawyerMode" src="../../assets/img/basket.svg" alt="" />
+                            </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <h4 *ngIf="!lawyerDocuments.length" class="targetDescription">Информация отсутствует</h4>
+        </div>
+    </div>
+</div>

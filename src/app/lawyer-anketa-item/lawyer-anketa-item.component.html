@@ -1,0 +1,186 @@
+<div class="pers-cab__body">
+  <div *ngIf="alwaysOpen" class="title title--min">
+    Моя анкета
+  </div>
+    <div class="pers-cab__content pers-cab__content-anket">
+      <div class="js-ankets js-ankets-inner">
+        <div class="ankets-block__items list">
+          <div class="ankets-item" (click)="showAnketaContent=!showAnketaContent">
+            <div class="ankets-item__wrap">
+              <div class="ankets-item__left">
+                <div class="ankets-item__img">
+                  <img [src]="lawyerData.avatar || lawyerData.avatarLink" alt="" />
+                </div>
+                <div class="ankets-item__under-img">
+                  <img src="../../assets/img/bag.svg" alt="" />
+                  <span>{{age||0}} лет</span>
+                </div>
+                <div class="ankets-item__more">
+                  Подробнее
+                </div>
+              </div>
+              <div class="ankets-item__right">
+                <div class="ankets-item__name">
+                  <span>{{lawyerData.firstName +' '+ lawyerData.lastName}}</span>
+                  <div class="ankets-item__ics">
+                    <div class="ankets-item__location">
+                      <img src="../../assets/img/point.svg" alt="" />
+                      <span>{{lawyerData.region}}</span>
+                    </div>
+                    <div class="ankets-item__under-img">
+                      <img src="../../assets/img/bag.svg" alt="" />
+                      <span>{{age || 0}} лет</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ankets-item__pravo">
+                  <div *ngFor="let category of lawyerData.categories">{{category}}</div>
+                </div>
+                <a class="ankets-item__link">
+                  Обратиться к юристу
+                </a>
+                <div class="ankets-item__buttons">
+                  <a  class="button button--medium button--blue js-link">
+                    <div class="button__text" (click)="showMsgDialog()">
+                      Обратиться к юристу
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="yurist-inner js-shower" [ngClass]="{'active': alwaysOpen || showAnketaContent}" data-id="1">
+            <div class="yurist-inner__wrap">
+              <div class="yurist-inner__right">
+                <div class="tab-inner">
+                  <div class="tab-inner__top">
+                    <div class="tab-inner__button js-button-tab" [ngClass]="{'active': showTabArray[0]}"  (click)="showContent(0)" data-id="1">
+                      <span>Личная информация</span>
+                    </div>
+                    <div class="tab-inner__button js-button-tab" [ngClass]="{'active': showTabArray[1]}" (click)="showContent(1)" data-id="2">
+                      <span>Документы юриста</span>
+                    </div>
+                    <div class="tab-inner__button js-button-tab" [ngClass]="{'active': showTabArray[2]}" (click)="showContent(2)" data-id="3">
+                      <span>FAQ</span>
+                    </div>
+                    <div class="tab-inner__button js-button-tab" [ngClass]="{'active': showTabArray[3]}" (click)="showContent(3)" data-id="4">
+                      <span>Дипломы</span>
+                    </div>
+                  </div>
+                  <div class="tab-inner__body">
+                    <div class="tab-inner__block js-content-tab active" [ngClass]="{'active': showTabArray[0]}" *ngIf="showTabArray[0]" data-id="1">
+                      <div class="info-items">
+
+                        <div class="info-item" style="width: 100%;">
+                          <div class="simp-block simp-block--big">
+                            <div class="simp-block__img">
+                              <img src="../../assets/img/contacts.svg" alt="" />
+                            </div>
+                            <div class="simp-block__text">
+                              Контактная информация
+                            </div>
+                          </div>
+                          <div class="info-item__body" style="max-width: unset;">
+                            <div class="info-item__bl">
+                              <span>Телефон юриста:</span>
+                              <span>{{lawyerData.cellPhone}}</span>
+                            </div>
+                            <div class="info-item__bl">
+                              <span>Телефон офиса:</span>
+                              <span>{{lawyerData.phoneNumber}}</span>
+                            </div>
+                            <div class="info-item__bl">
+                              <span>Электронная почта:</span>
+                              <span>{{lawyerData.email}}</span>
+                            </div>
+                            <div class="info-item__bl">
+                              <span>Адрес офиса:</span>
+                              <span>{{lawyerData.officeAddress}}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-item" style="width: 100%;">
+                          <div class="simp-block">
+                            <div class="simp-block__img">
+                              <img src="../../assets/img/icon2.svg" alt="" />
+                            </div>
+                            <div class="simp-block__text">
+                              Дополнительная информация
+                            </div>
+                          </div>
+                          <div class="info-item__body" style="max-width: unset;">
+                            <div class="info-item__bl">
+                              <span>Название вуза:</span>
+                              <span>{{lawyerData.university}}</span>
+                            </div>
+                            <div class="info-item__bl">
+                              <span>Дата окончания:</span>
+                              <span>{{formatedDate}}</span>
+                            </div>
+                            <div class="info-item__bl">
+                              <span>Стаж работы юристом (лет):</span>
+                              <span>{{lawyerData.expireance}}</span>
+                            </div>
+                            <div class="info-item__bl">
+                              <span>Лицензия адвоката:</span>
+                              <mat-checkbox (click)="$event.preventDefault()" color="primary" [(ngModel)]="lawyerLicence"></mat-checkbox>
+                            </div>
+                          </div>
+                        </div>
+                      <div class="scroll-text">
+                          {{lawyerData.resume}}
+                      </div>
+                    </div>
+                    </div>
+                    <div class="tab-inner__block js-content-tab " [ngClass]="{'active': showTabArray[1]}" *ngIf="showTabArray[1]" data-id="2">
+                      <app-lawyer-documents *ngIf="lawyerDocuments.length" [showSearchBar]="false" [lawyerDocuments]="lawyerDocuments"></app-lawyer-documents>
+                      <h4 *ngIf="!lawyerDocuments.length" class="targetDescription">Информация отсутствует</h4> 
+                    </div>
+                    <div class="tab-inner__block js-content-tab " [ngClass]="{'active': showTabArray[2]}" *ngIf="showTabArray[2]" data-id="3">
+                      <div class="yurist-inner__faq" style="overflow: overlay;max-height: 24em;">
+                          <app-faq-list *ngIf="lawyerFaqs.length" [faqs]="lawyerFaqs"></app-faq-list>
+                          <h4 *ngIf="!lawyerFaqs.length" class="targetDescription">Информация отсутствует</h4> 
+                      </div>
+                    </div>
+                    <div class="tab-inner__block js-content-tab " [ngClass]="{'active': showTabArray[3]}" *ngIf="showTabArray[3]" data-id="4">
+                      <div class="yurist-inner__diploms" style="display: flex;justify-content: center;">
+                        <h4 *ngIf="!slides.length" class="targetDescription">
+                          Информация отсутствует
+                        </h4>
+                        <div *ngIf="slides.length" style="width:16em;">    
+                          <mat-carousel
+                            timings="250ms ease-in"
+                            [autoplay]="true"
+                            interval="10000"
+                            color="primary"
+                            maxWidth="16em"
+                            proportion="150"
+                            slides="5"
+                            [loop]="false"
+                            [hideArrows]="false"
+                            [hideIndicators]="false"
+                            [useKeyboard]="true"
+                            [useMouseWheel]="false"
+                            orientation="ltr"
+                          >
+                            <mat-carousel-slide
+                              #matCarouselSlide
+                              *ngFor="let slide of slides; let i = index"
+                              [image]="slide"
+                              overlayColor="#00000040"
+                              [hideOverlay]="false"
+                            ></mat-carousel-slide>
+                          </mat-carousel>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,102 @@
+<div fxFlexFill fxLayoutAlign="center center" *ngIf="!docFilled">
+    <h1 style="font-size: 1.5em;">Заполнить документ</h1>
+  </div>
+  <!-- <div class="flex-container" fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap="5px"> -->
+  <form [formGroup]="formGroup" fxFlexFill *ngIf="!docFilled">
+    <mat-horizontal-stepper [linear]="isLinear" formArrayName="form" fxFlexFill #stepper>
+      <ng-template matStepperIcon="number" let-index="index">
+        {{index+someIndex}}
+      </ng-template>
+      <div *ngFor="let customerGroup of form.controls; let last = last; let first = first;let i = index">
+        <mat-step *ngIf="showArray[i]" [formGroupName]="i"  [stepControl]="customerGroup">
+
+                <ng-template matStepLabel>{{fieldArr[i].fieldName}}</ng-template>
+                <p class="targetDescription">{{fieldArr[i].fieldDescription}}</p>
+                <!-- *ngIf="!fieldArr[i].signature" -->
+            <div  [ngSwitch]="fieldArr[i].fieldType">
+                
+                <mat-form-field *ngSwitchCase="'list'">
+                <mat-label>{{fieldArr[i].fieldName}}</mat-label>
+                <mat-select (selectionChange)="onSelectValue($event.value,fieldArr[i])" formControlName="cont" required>
+                    <mat-option *ngFor="let item of fieldArr[i].fieldOptions" [value]="item">
+                    {{item}}
+                    </mat-option>
+                </mat-select>
+                </mat-form-field>
+
+                <div *ngSwitchCase="'signature'">
+                    <div class="sig-pad">
+                        <signature-pad [options]="signaturePadOptions"></signature-pad>
+                        <div class="pad-container" class="flex-container" fxLayout="row"  fxLayoutAlign="start space-around">
+                            <button mat-button color="primary" (click)="clearSignature()">clear</button>
+                        </div>
+                    </div>
+                </div>
+                <div *ngSwitchCase="'date'" fxLayout="column">
+                    <mat-form-field >
+                        <input matInput  [matDatepicker]="picker" placeholder="dd/mm/yyyy" style="border:none" [(ngModel)]="filledValues[fieldArr[i].fieldUUID].fieldValue"  formControlName="cont" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <div class="invalid-data" *ngIf="wrongDate(i)">
+                        Не правильная дата
+                    </div>
+                </div>
+                <div *ngSwitchCase="'time'" fxLayout="column">
+                    <mat-form-field >
+                        <input matInput  type="time"  style="border:none" [(ngModel)]="filledValues[fieldArr[i].fieldUUID].fieldValue"  formControlName="cont" required>
+                    </mat-form-field>
+                    <div class="invalid-data" *ngIf="wrongDate(i)">
+                        не верное время
+                    </div>
+                </div>
+                <mat-form-field *ngSwitchDefault>
+                    <mat-label>{{fieldArr[i].fieldName}}</mat-label>
+                    <input matInput type="{{fieldArr[i].fieldType}}" placeholder="Please fill in" [(ngModel)]="filledValues[fieldArr[i].fieldUUID].fieldValue"  formControlName="cont" required>
+                </mat-form-field>
+            </div>
+
+
+            <div class="dans-block__bottom">
+                    <button *ngIf="!first" (click)="moveStep(false)" class="button button--goon button--blue button--back button--arrow ">
+                    <span class="button__icon"></span>
+                    <span class="button__text">
+                                вернуться
+                        </span>
+                    </button>
+                    <button *ngIf="!last" [disabled]="form.controls[i].invalid" (click)="moveStep(true)" type="submit" class="button button--goon button--blue button--arrow">
+                        <span class="button__text">
+                          далее
+                        </span>
+                        <span class="button__icon"></span>
+                      </button>
+                <button *ngIf="last" type="button" (click)="generatePDF()" class="button button--save button--blue js-save">
+                        <span class="button__image">
+                            <img src="../assets/img/save.svg" alt="" width="20" height="20">
+                        </span>
+                        <span class="button__text">
+                            Создать документ
+                        </span>
+                    </button>
+            </div>
+
+        </mat-step>
+      </div>
+    </mat-horizontal-stepper>
+    
+  </form>
+<div *ngIf="docFilled">
+    <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+        <h2 style="font-size: 1.5em;">Документ успешно создан.Вы можете скачать документ в любое время в личном кабинете </h2>
+      
+    <button type="button" (click)="savePDF()" class="button button--save button--blue js-save">
+        <span class="button__image">
+            <img src="../assets/img/save.svg" alt="" width="20" height="20">
+        </span>
+        <span class="button__text">
+            сохранить на диске
+        </span>
+    </button>
+    <a *ngIf="showLinkForDownload" download="document.pdf" href="{{pathForDownload}}">Save locally</a>
+    </div>
+</div>

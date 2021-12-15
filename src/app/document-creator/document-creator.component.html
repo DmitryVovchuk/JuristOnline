@@ -1,0 +1,299 @@
+<div class="pers-cab__body" style="padding:0;">
+    <div class="pers-cab__content" style="padding: 40px 25px 50px">
+      <div class="title title--min">
+        Добавить новый документ
+      </div>
+      <form class='form-height' [formGroup]="documentCreatrorGroup" *ngIf="!docCompleted">
+        <div *ngIf="showProgressBar" class="spinner">
+          <mat-spinner ></mat-spinner>
+        </div>
+        <mat-horizontal-stepper class="stepper-boarder-radius" formArrayName="formArray" #stepper>
+        <ng-template matStepperIcon="number" let-index="index">
+            {{index+someIndex}}
+        </ng-template>
+        <mat-step formGroupName="0" *ngIf="showArray[0]" state="home" [stepControl]="formArray?.get([0])" errorMessage="Name is required.">
+            <!-- <form class='form-height' [formGroup]="firstFormGroup">  -->
+            <ng-template matStepLabel>Заголовок</ng-template>
+            <p class="targetDescription">Название докуманта отображается в списке результата поиска и дает первичную индикацию пользователю если ему подходит данный документ.
+                Поэтому должен четко и кратко отображать его содержание  </p>
+                <div style="width: 30%;">
+                  <mat-form-field class="title-form-field">
+                      <mat-label>названия документа</mat-label>
+                      <input formControlName="title" matInput >                                     
+                  </mat-form-field>
+                  <div class="invalid-data" *ngIf="formArray.get([0]).touched">
+                    <div *ngIf="formArray?.get([0]).invalid">
+                      <div *ngIf="formArray?.get([0]).controls.title.hasError('required')">*обязательное поле</div>
+                      <div *ngIf="formArray?.get([0]).controls.title.hasError('minlength')">*минимальная длинна заголовка 5 символов</div>
+                      <div *ngIf="formArray?.get([0]).controls.title.hasError('maxlength')">*максимальная длинна заголовка 100 символов</div>
+                      <div *ngIf="formArray?.get([0]).controls.title.hasError('pattern')">*только кирилица буквы и цифры</div>
+                    </div>
+                    <div *ngIf="showUniqnessError">*документ с таким названием уже существует.Выберите другое имя</div>
+                  </div>
+                </div>
+                <div class="dans-block__bottom">
+                    <button type="submit" class="button button--goon button--blue button--arrow" (click)="checkTitleUniqness()" >
+                      <span class="button__text">
+                        далее
+                      </span>
+                      <span class="button__icon"></span>
+                    </button>
+                </div>
+            <!-- </form> -->
+        </mat-step>
+
+        <mat-step formGroupName="1" *ngIf="showArray[1]" formGroupName="1" state="format_align_center" [stepControl]="formArray?.get([1])" errorMessage="Category is required.">
+            <!-- <form [formGroup]="categoryGroupe" class='form-height'> -->
+            <p class="targetDescription">Выберите к какой категории относится данный документ</p>
+            <div style="width: 30%;">
+              <mat-form-field>
+                  <ng-template matStepLabel>категория</ng-template>
+                  <mat-label>Выбор категория</mat-label>
+                  <mat-select (selectionChange)="categorySelect($event.value)" formControlName="type">
+                  <mat-option *ngFor="let category of categoriesName" [value]="category">
+                      {{category}}
+                  </mat-option>
+                  </mat-select>
+              </mat-form-field>
+              <div class="invalid-data" *ngIf="formArray?.get([1]).invalid && formArray.get([1]).touched">
+                <div *ngIf="formArray?.get([1]).controls.title.hasError('required')">*обязательное поле</div>
+              </div>
+            </div>
+            <div class="dans-block__bottom">
+                <a class="button button--goon button--blue button--back button--arrow " (click)="moveStep(false,false)">
+                  <span class="button__icon"></span>
+                  <span class="button__text">
+                            вернуться
+                    </span>
+                </a>
+                <button (click)="moveStep(true,false)" [disabled]="formArray?.get([1]).invalid" type="submit" class="button button--goon button--blue button--arrow">
+                  <span class="button__text">
+                    далее
+                  </span>
+                  <span class="button__icon"></span>
+                </button>
+              </div>
+            <!-- </form> -->
+        </mat-step>
+
+        <mat-step formGroupName="2" *ngIf="showArray[2]" state="done_all" [stepControl]="formArray?.get([2])">
+            <!-- <form [formGroup]="subcategories" class='form-height'> -->
+            <p class="targetDescription">Выберите какому разделу относится данный документ</p>
+            <div style="width: 30%;">
+              <mat-form-field>
+              <ng-template matStepLabel>подкатегория</ng-template>
+              <mat-label>Выбор категория</mat-label>
+              <mat-select  formControlName="subtype">
+                  <mat-option *ngFor="let sub of selectedCat"  [value]="sub">
+                  {{sub}}
+                  </mat-option>
+              </mat-select>
+              </mat-form-field>
+              <div class="invalid-data" *ngIf="formArray?.get([2]).invalid && formArray.get([2]).touched">
+                <div *ngIf="formArray?.get([2]).controls.title.hasError('required')">*обязательное поле</div>
+              </div>
+            </div>
+            <div class="dans-block__bottom">
+                <a (click)="moveStep(false,false)" class="button button--goon button--blue button--back button--arrow ">
+                  <span class="button__icon"></span>
+                  <span class="button__text">
+                            вернуться
+                          </span>
+                </a>
+                <button type="submit" (click)="moveStep(true,false)" [disabled]="formArray?.get([2]).invalid" class="button button--goon button--blue button--arrow">
+                  <span class="button__text">
+                    далее
+                  </span>
+                  <span class="button__icon"></span>
+                </button>
+              </div>
+            <!-- </form> -->
+        </mat-step>
+
+        <mat-step formGroupName="3" *ngIf="showArray[3]" [stepControl]="formArray?.get([3])">
+            <!-- <form [formGroup]="keyWord" class='form-height'> -->
+            <p class="targetDescription">Ключевые слова служат для поиска данного документа пользователем на сайте.
+                Чтобы повысить шансы придумайте ключевые слова по теме документа (*максимум 10)</p>
+            <ng-template matStepLabel>Ключевые слова</ng-template>
+            <div class="container-btn-input container-flex">
+              <div style="width: 30%;">
+                <mat-form-field>
+                    <mat-label>Ключевые слова для поиска</mat-label>
+                    <input matInput placeholder="В видите ключевое слова для поиска" [(ngModel)]="tempKey" formControlName="keyWords">
+                </mat-form-field>
+                <div class="invalid-data" *ngIf="formArray.get([3]).touched">
+                  <div *ngIf="formArray?.get([3]).invalid">
+                    <div *ngIf="formArray?.get([3]).controls.keyWords.hasError('minlength')">*минимальная длинна ключевого слова/фразы 3 символов</div>
+                    <div *ngIf="formArray?.get([3]).controls.keyWords.hasError('maxlength')">*максимальная длинна ключевого слова/фразы 100 символов</div>
+                    <div *ngIf="formArray?.get([3]).controls.keyWords.hasError('pattern')">*только кирилица буквы и цифры</div>
+                  </div>
+                  <div *ngIf="!keyWordsArray.length">*введите минимум одно слово</div>
+                  <div *ngIf="showMaxKeyWordExceeded">*Превышено ограничение 10 слов/фраз</div>
+                </div>
+                <div class="invalid-data" *ngIf="sameKeyWordEnter">*Такое ключевое слово уже существует!!!</div>
+            </div>
+            <div class="dans-block__bottom" style="margin-left: 1em;">
+              <!-- chekIfValid(3) || addKeyWord(tempKey) -->
+              <button type="button" (click)="chekIfValid(3) || addKeyWord(tempKey)" [disabled]="formArray?.get([3]).invalid" class="button button--save button--blue js-save">
+                <span class="button__image">
+                  <img src="../assets/img/save.svg" alt="" width="20" height="20">
+                </span>
+                <span class="button__text">
+                  Добавить
+                    </span>
+              </button>
+            </div>
+            </div>
+            <div class="flex-container" fxLayout="row"  fxLayoutAlign="start center" fxLayoutGap="5px">
+                
+                <div class="keywordcss btn" *ngFor="let keyw of keyWordsArray;let i=index;" > 
+                <button class="close"  (click)="removeKeyWord(i)">X</button>
+                {{keyw}}
+                </div>
+            </div>
+
+            <div class="dans-block__bottom">
+                <a (click)="moveStep(false,false)" class="button button--goon button--blue button--back button--arrow ">
+                  <span class="button__icon"></span>
+                  <span class="button__text">
+                            вернуться
+                          </span>
+                </a>
+                <button (click)="chekIfValid(3)&& !keyWordsArray.length || keyWordsArray.length == 0 || moveStep(true,false);" type="submit" class="button button--goon button--blue button--arrow">
+                  <span class="button__text">
+                    далее
+                  </span>
+                  <span class="button__icon"></span>
+                </button>
+              </div>
+            <!-- </form> -->
+        </mat-step>
+
+        <mat-step formGroupName="4"  *ngIf="showArray[4]" [stepControl]="formArray?.get([4])">
+            <!-- <form [formGroup]="desciptionFormGroup" class='form-height'> -->
+            <p class="targetDescription">Приведите примеры применения на практике данного документа</p>
+            <ng-template matStepLabel>Практическое примение</ng-template>
+            <mat-form-field class="title-form-field">
+                <mat-label>Практическое примение</mat-label>
+                <input matInput formControlName="discription" placeholder="Ввидите краткое описание документа" required>
+            </mat-form-field>
+            <div class="invalid-data" *ngIf="formArray?.get([4]).invalid && formArray.get([4]).touched">
+              <div *ngIf="formArray?.get([4]).controls.discription.hasError('required')">*обязательное поле</div>
+              <div *ngIf="formArray?.get([4]).controls.discription.hasError('minlength')">*минимальная длинна 5 символов</div>
+              <div *ngIf="formArray?.get([4]).controls.discription.hasError('maxlength')">*максимальная длинна 1000 символов</div>
+              <div *ngIf="formArray?.get([4]).controls.discription.hasError('pattern')">*только кирилица буквы и цифры</div>
+            </div>
+            <div class="dans-block__bottom">
+                <a (click)="moveStep(false,false)" class="button button--goon button--blue button--back button--arrow ">
+                  <span class="button__icon"></span>
+                  <span class="button__text">
+                            вернуться
+                          </span>
+                </a>
+                <button (click)="chekIfValid(4) || moveStep(true,false)" type="submit" class="button button--goon button--blue button--arrow">
+                  <span class="button__text">
+                    далее
+                  </span>
+                  <span class="button__icon"></span>
+                </button>
+              </div>
+            <!-- </form> -->
+        </mat-step>
+
+        <mat-step formGroupName="5" *ngIf="showArray[5]" [stepControl]="formArray?.get([5])">
+            <!-- <form [formGroup]="contentGroup" class='form-height' style="height: 58vh;"> -->
+            <ng-template matStepLabel>Текст документа</ng-template>
+            <div>
+            <p class="targetDescription">Заполните содержимое документа.
+                Используйте кнопку "Вставить переменное поле" для определения переменного поля для заполнения пользователем.</p>
+                <div class="container-middle">
+                <button type="button" style="margin:1em;width:20em;" (click)="showVarClientDialog()" class="button button--save button--blue js-save">
+                  <span class="button__image">
+                    <img src="../assets/img/save.svg" alt="" width="20" height="20">
+                  </span>
+                  <span class="button__text">
+                    Вставить переменное поле
+                      </span>
+                </button>
+                </div>
+                <angular-editor #editor [(ngModel)]="htmlContent" (focus)="onFocus()" (blur)="onBlur()" formControlName="content" [config]="editorConfig"></angular-editor>
+                <div class="invalid-data" *ngIf="formArray.get([5]).touched">
+                  <div *ngIf=formArray?.get([5]).invalid >
+                    <div *ngIf="formArray?.get([5]).controls.content.hasError('minlength')">*минимальная длинна документа 15 символов</div>
+                    <div *ngIf="formArray?.get([5]).controls.content.hasError('maxlength')">*максимальная длинна документа 500000 символов</div>
+                    <!-- <div *ngIf="formArray?.get([5]).controls.content.hasError('pattern')">*только кирилица буквы и цифры</div> -->
+                    <div *ngIf="formArray?.get([5]).controls.content.hasError('required')">*обязательное поле</div>
+                  </div>
+                  <div *ngIf="!clientVariables.length">*введите минимум одно переменное слово</div>
+                </div>
+            <div class="dans-block__bottom">
+                <a (click)="moveStep(false,false)" class="button button--goon button--blue button--back button--arrow ">
+                  <span class="button__icon"></span>
+                  <span class="button__text">
+                            вернуться
+                          </span>
+                </a>
+                <button (click)="chekIfValid(5) || !clientVariables.length || moveStep(true,true)" type="submit" class="button button--goon button--blue button--arrow">
+                  <span class="button__text">
+                    далее
+                  </span>
+                  <span class="button__icon"></span>
+                </button>
+              </div>
+            </div>
+        <!-- </form> -->
+        </mat-step>
+
+        <mat-step formGroupName="6" *ngIf="showArray[6]" [stepControl]="formArray?.get([6])">
+            <!-- <form [formGroup]="priceGroup" class='form-height'> -->
+            <p class="targetDescription">Укажите запрашиваемую вами цену.</p>
+            <ng-template matStepLabel>Готово</ng-template>
+
+            <mat-form-field>
+              <mat-label>Цена</mat-label>
+              <input matInput type="number" style="width:30%;" placeholder="укажите цену документа" formControlName="price">
+            </mat-form-field>
+            <div class="invalid-data" *ngIf="formArray?.get([6]).invalid && formArray.get([6]).touched">
+              <div *ngIf="formArray?.get([6]).controls.price.hasError('min')">*минимальная цена документа 100 рублей</div>
+              <div *ngIf="formArray?.get([6]).controls.price.hasError('max')">*максимальная цена документа 50000 рублей</div>
+              <div *ngIf="formArray?.get([6]).controls.price.hasError('required')">*обязательное поле</div>
+            </div>
+            
+            <div>          
+            <div class="dans-block__bottom">
+                <a (click)="moveStep(false,false)" class="button button--goon button--blue button--back button--arrow ">
+                  <span class="button__icon"></span>
+                  <span class="button__text">
+                            вернуться
+                          </span>
+                </a>
+                <button (click)="chekIfValid(6) || completeDoc()" type="submit" class="button button--goon button--blue button--arrow">
+                  <span class="button__text">
+                    Сохранить
+                  </span>
+                  <span class="button__icon"></span>
+                </button>
+              </div>
+            </div>
+            <div *ngIf="succsessMsg">
+                <span class="success">{{succsessMsg}}</span>
+            </div>
+            <div *ngIf="errorList.length">
+                <span class="error" *ngFor="let errItem of errorList">{{errItem}}</span>
+            </div>
+        <!-- </form> -->
+        </mat-step>
+        </mat-horizontal-stepper>
+      </form>
+      <div fxLayout="column" fxFlexAlign="center center" *ngIf="docCompleted">
+        <br/>
+        <h3>{{message}}</h3>
+        <h3>Документ находится в разделе "Мои документы"</h3>
+        <!-- <button type="submit" class="button button--goon button--blue" (click)="startOver()" >
+          <span class="button__text">
+            Начать заново
+          </span>
+        </button> -->
+      </div>
+    </div>
+  </div>    

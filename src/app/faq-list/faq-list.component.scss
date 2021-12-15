@@ -1,0 +1,6 @@
+@import '../app-styling.scss';
+
+::ng-deep .fontSize{
+    font-size: 1em;
+    max-width: unset !important;
+}

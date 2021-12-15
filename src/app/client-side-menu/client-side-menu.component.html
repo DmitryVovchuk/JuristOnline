@@ -1,0 +1,39 @@
+<div class="open-pc js-open-pc button button--blue button--arrow" (click)="showPopUp()">
+  личный кабинет
+  <span class="button__icon"></span>
+</div>
+<div class="pers-cab__sidebar js-sidebar" [ngClass]="{'open': showMenu}">
+    <div class="close-sidebar" (click)="closePopUp()">
+      <img src="../img/close.svg" alt="" />
+    </div>
+    <a [routerLink]="['/clientLawyerSearch']" class="pers-cab__link pers-cab__link--ank" [ngClass]="{'active': activeTab[0]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Поиск юриста</span>
+    </a>
+    <a [routerLink]="['/clientFaqSearch']" class="pers-cab__link pers-cab__link--edit active" [ngClass]="{'active': activeTab[1]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Faq</span>
+    </a>
+    <a [routerLink]="['/clientDocSearch']" class="pers-cab__link pers-cab__link--new-doc" [ngClass]="{'active': activeTab[2]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Поиск документов</span>
+    </a>
+    <a [routerLink]="['/clientMessages']" class="pers-cab__link pers-cab__link--quest" [ngClass]="{'active': activeTab[3]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Сообщения</span>
+    </a>
+    <a [routerLink]="['/']" class="pers-cab__link pers-cab__link--blog" [ngClass]="{'active': activeTab[4]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Блоги</span>
+    </a>
+    <a [routerLink]="['/boughtDocument']" class="pers-cab__link pers-cab__link--my-doc" [ngClass]="{'active': activeTab[5]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Приобретенные документы</span>
+    </a>
+    <a [routerLink]="['/']" class="logout-link">
+      <div class="logout-link__icon">
+        <img src="../img/close-gray.svg" alt="" width="16" height="16" />
+        <span>Выйти</span>
+      </div>
+    </a>
+</div>

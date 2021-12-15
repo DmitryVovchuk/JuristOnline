@@ -1,0 +1,53 @@
+
+   <app-header></app-header>
+   <div class="inner-wrap">
+      <div *ngIf="showProgressBar" class="spinner">
+        <mat-spinner ></mat-spinner>
+      </div>
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="index2.html">Юрист Онлайн</a>
+          <span>Вход</span>
+        </div>
+        <div class="inner-wrap__block">
+          <div class="title title--center title--med">
+            Вход в личный кабинет
+          </div>
+          <div class="login">
+            <form class="form form--login">
+              <div class="form__items">
+                <div class="form__item">
+                    <span>Электронная почта</span>
+                    <input type="tel" name="user-mail" placeholder="Электронная почта*" />
+                </div>
+                <div class="form__item">
+                    <span>Пароль</span>
+                    <input  type="password" name="user-password" placeholder="Пароль*" />
+                </div>
+                <div class="form__submit">
+                  <button class="button button--submit button--blue">
+                    <span class="button__text">
+                      Вход
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div class="soc-widget">
+              <span>Через социальные сети:</span>
+            </div>
+            <div class="login__bottom">
+              <a href="" class="simple-link">Нет профиля на Юрист Онлайн ?</a>
+              <a [routerLink]="['/registration']" class="button button--submit button--blue">
+                <span class="button__text">
+                  Зарегистрироваться
+                </span>
+              </a>
+              <a href="" class="simple-link">Забыли пароль ?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+

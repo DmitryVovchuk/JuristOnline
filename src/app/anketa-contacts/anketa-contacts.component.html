@@ -1,0 +1,96 @@
+<form action="" class="form" [formGroup]="anketaContacts">
+    <div class="dans-block">
+      <div class="simp-block">
+        <div class="simp-block__img">
+          <img src="../assets/img/contacts.svg" alt="">
+        </div>
+        <div class="simp-block__text">
+          Контакты
+        </div>
+      </div>
+      <div class="dans-block__items dans-block__items--contacts">
+        <div class="input-block">
+          <span>Ваш телефон:</span>
+          <div class="input-block__field">
+            <input formControlName="phoneNumber" type="tel" name="phone" placeholder ="+7 495 123-45-67">
+            <div *ngIf="anketaContacts.controls.phoneNumber.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.phoneNumber.hasError('required')">*обязательное поле</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <span>Телефон офиса:</span>
+          <div class="input-block__field">
+            <input formControlName="cellPhone" type="tel" name="phone-office" placeholder ="+7 495 123-45-67">
+            <div *ngIf="anketaContacts.controls.cellPhone.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.cellPhone.hasError('required')">*обязательное поле</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <span>Email:</span>
+          <div class="input-block__field">
+            <input formControlName="email" type="email" name="email">
+            <div *ngIf="anketaContacts.controls.email.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.email.hasError('required')">*обязательное поле</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <span>Адрес офиса</span>
+          <div class="input-block__field">
+            <input type="text" formControlName="officeAddress" name="adress" placeholder=" ул. Ильинка, 23/16, Москва, Россия, 103132 (пример)">
+            <div *ngIf="anketaContacts.controls.officeAddress.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.officeAddress.hasError('maxlength')">*максимум 100 сиволов</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <span>Ваш сайт:</span>
+          <div class="input-block__field">
+            <input formControlName="linkLawyerSite"type="text" name="site" placeholder="legals.ru">
+            <div *ngIf="anketaContacts.controls.linkLawyerSite.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.linkLawyerSite.hasError('maxlength')">*максимум 100 сиволов</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="simp-block">
+        <div class="simp-block__img">
+          <img src="../assets/img/icon5.svg" alt="">
+        </div>
+        <div class="simp-block__text">
+          Социальные сети
+        </div>
+      </div>
+      <div class="dans-block__items dans-block__items--four">
+        <div class="input-block">
+          <span>Facebook:</span>
+          <div class="input-block__field">
+            <input type="text" formControlName="facebook" name="Facebook" value="">
+            <div *ngIf="anketaContacts.controls.facebook.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.facebook.hasError('maxlength')">*максимум 100 сиволов</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <span>Vk:</span>
+          <div class="input-block__field">
+            <input formControlName="vk" type="text" name="date" value="">
+            <div *ngIf="anketaContacts.controls.vk.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.vk.hasError('maxlength')">*максимум 100 сиволов</div>
+            </div>
+          </div>
+        </div>
+        <div class="input-block">
+          <span>Одноклассиники:</span>
+          <div class="input-block__field">
+            <input formControlName="odnoklassiki" type="text" name="date" value="">
+            <div *ngIf="anketaContacts.controls.odnoklassiki.invalid && touched" class="invalid-data">
+              <div *ngIf="anketaContacts.controls.odnoklassiki.hasError('maxlength')">*максимум 100 сиволов</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>

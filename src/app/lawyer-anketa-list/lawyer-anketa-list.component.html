@@ -1,0 +1,145 @@
+
+    <app-header></app-header>
+    
+    <div class="inner-wrap">
+        <div class="container">
+          <div class="breadcrumbs">
+              <br/>
+            <!-- <a href="index2.html">Юрист Онлайн</a>
+            <span>Личный кабинет пользователя</span> -->
+          </div>
+          <div class="pers-cab pers-cab--result">
+            <div class="contaoner">
+              <div class="pers-cab__wrap">
+                <app-client-side-menu [tabindex]='0'></app-client-side-menu>
+                <div class="pers-cab__body">
+                  <div class="pers-cab__content">
+                    <div class="title title--min">
+                      Результаты поиска юриаста
+                    </div>
+                    <div class="pers-cab__top-result">
+                      <div class="info-item">
+                        <div class="simp-block">
+                          <div class="simp-block__img">
+                            <img src="../assets/img/icon3.svg" alt="" width="25" height="25" />
+                          </div>
+                          <div class="info-item__body">
+                            <div class="info-item__bl">
+                              <span>Специализация:</span>
+                              <span>Хозяйственное право</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="info-item">
+                        <div class="simp-block">
+                          <div class="simp-block__img">
+                            <img src="../assets/img/ic7.svg" alt="" width="25" height="25" />
+                          </div>
+                          <div class="info-item__body">
+                            <div class="info-item__bl">
+                              <span>Трудовой стаж:</span>
+                              <span>15 лет</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="info-item">
+                        <div class="simp-block">
+                          <div class="simp-block__img">
+                            <img src="../assets/img/icon8.svg" alt="" width="25" height="25" />
+                          </div>
+                          <div class="info-item__body">
+                            <div class="info-item__bl">
+                              <span>Рейтинг:</span>
+                              <span>
+                                <img src="../assets/img/rate.svg" alt="" width="68" height="10" />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="info-item">
+                        <div class="simp-block">
+                          <div class="simp-block__img">
+                            <img src="../assets/img/icon9.svg" alt="" width="25" height="25" />
+                          </div>
+                          <div class="info-item__body">
+                            <div class="info-item__bl">
+                              <span>Ключевые слова:</span>
+                              <span>
+                                Наследство, раздел
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="ankets-block__wrap">
+                      <div class="ankets-block__top">
+                        <div class="ankets-block__selects">
+                          <form action="" class="form">
+                            <div class="form__select">
+                              <div class="form__select-label">
+                                Специализация
+                              </div>
+                              <select name="pravo" id="" class="js-anket-select js-select">
+                                <option value="pravo1"> Хозяйственное право</option>
+                                <option value="pravo2">Хозяйственное право</option>
+                              </select>
+                            </div>
+                            <div class="form__select">
+                              <div class="form__select-label">
+                                Город
+                              </div>
+                              <select name="city" id="" class="js-anket-select js-select">
+                                <option value="city1">Санкт-Петербург</option>
+                                <option value="city2">Санкт-Петербург</option>
+                              </select>
+                            </div>
+                            <div class="form__select">
+                              <div class="form__select-label">
+                                Трудовой стаж
+                              </div>
+                              <select name="stag" id="" class="js-anket-select js-select">
+                                <option value="stag1">17 лет</option>
+                                <option value="stag2">17 лет</option>
+                              </select>
+                            </div>
+                            <div class="form__select">
+                              <div class="form__select-label">
+                                Рейтинг
+                              </div>
+                              <select name="rate" id="" class="js-anket-select js-select">
+                                <option value="rate1">5</option>
+                                <option value="rate2">4</option>
+                              </select>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="js-ankets js-ankets-inner">
+                        <!-- <div class="ankets-block__items list"> -->
+                            <app-lawyer-anketa-item *ngFor="let item of [1,2,3,4,5]"></app-lawyer-anketa-item>
+                          <div class="pagination">
+                            <a href="" class="pagination__prev"></a>
+                            <a href="" class="pagination__dot"></a>
+                            <a href="" class="pagination__dot"></a>
+                            <a href="" class="pagination__dot"></a>
+                            <a href="" class="pagination__dot"></a>
+                            <a href="" class="pagination__dot"></a>
+                            <a href="" class="pagination__dot"></a>
+                            <a href="" class="pagination__next"></a>
+                          </div>
+                        <!-- </div> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <app-footer></app-footer>
+

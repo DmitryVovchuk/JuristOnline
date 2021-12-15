@@ -1,0 +1,44 @@
+@import '../app-styling.scss';
+
+.close.mat-button {
+    position: absolute;
+    top: -10px;
+    right: 0;
+    padding: 5px;
+    line-height: 14px;
+    min-width: auto;
+  }
+  .bottom-button{
+    width: 100% !important;
+  }
+  .close{
+    margin-right:1em;
+    margin-left:1em;
+  }
+  .popup_spinner{
+    right: 15em;
+    left: 15em;
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    height: 100%;
+    z-index: 9999;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+  }
+    .noselect {
+      width:100%;
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome, Edge, Opera and Firefox */
+  }
+.document-view{
+  max-height: 32em;
+    overflow-y: auto;
+    padding: 0 10px 15px;
+    margin: 10px 0;
+}

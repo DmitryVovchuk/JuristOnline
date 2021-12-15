@@ -1,0 +1,45 @@
+<form enctype="multipart/form-data" class="form photo-form">
+    <div class="dans-block">
+      <div class="photo-upload">
+        <div class="photo-upload__left">
+          <div class="photo-upload__img js-preview" data-src="../assets/img/img.jpg">
+            <img class="js-preview-photo" [src]="croppedImage"/>
+            <!-- <img src="../assets/img/img.jpg" class="js-preview-photo" alt="" width="182" height="243"> -->
+          </div>
+          <div class="photo-upload__del js-del-photo">
+            <span>
+              <img src="../assets/img/close.svg" alt="">
+            </span>
+            <span>
+              Удалить фото
+            </span>
+          </div>
+        </div>
+        <div class="photo-upload__right">
+          <div class="photo-upload__title">
+            Загрузите новое фото
+          </div>
+          <div class="photo-upload__field image-cropper">
+            <input type="file" accept="image/*" name="avatar" (change)="fileChangeEvent($event)" class="js-single-photo" id="single-upload">
+            <div class="photo-upload__field--block">
+             
+              <img src="../assets/img/upload.svg" alt="" >
+              <span class="file-name" data-text="Файл не выбран">Файл не выбран</span>
+            </div>
+              <image-cropper style="max-height: 30em;"
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="4 / 3"
+                [resizeToWidth]="256"
+                [roundCropper]="true"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()">
+              </image-cropper>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>

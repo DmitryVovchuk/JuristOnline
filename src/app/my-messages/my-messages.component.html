@@ -1,0 +1,40 @@
+<app-header></app-header>
+    <div class="inner-wrap">
+    <div class="container">
+      <div class="breadcrumbs">
+          <br/>
+        <!-- <a href="index2.html">Юрист Онлайн</a>
+        <span>Личный кабинет пользователя</span> -->
+      </div>
+      <div class="pers-cab">
+        <div class="contaoner">
+          <div class="pers-cab__wrap">
+            <app-jurist-side-menu [tabindex]="5"></app-jurist-side-menu>
+            <div class="pers-cab__body">
+              <div class="title title--min">
+                мои сообщения
+              </div>
+              <div class="pers-cab__sms js-more-wrap" style="overflow: overlay;height: 30em;padding-right: 30px;">
+                  <app-message-list [messages]='messages'></app-message-list>
+              </div>
+              <!-- <div class="pers-cab__sms-bottom"
+                  infiniteScroll 
+                  [infiniteScrollDistance]="2"
+                  [infiniteScrollThrottle]="50"
+                  (scrolled)="fetchMoreMsg()">
+                <a href="" class="more-lnk js-more-button">
+                  <div class="more-lnk__text">
+                    Показать еще
+                  </div>
+                  <span class="more-lnk__icon">
+                    <img src="../../assets/img/more-two.svg" alt="">
+                  </span>
+                </a>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+<app-footer></app-footer>

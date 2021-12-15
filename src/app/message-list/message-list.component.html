@@ -1,0 +1,47 @@
+<div *ngIf="showSpinner" class="spinner">
+  <mat-spinner></mat-spinner>
+</div>
+<div  class="faq-item js-faq-item" *ngFor="let msg of messages;" [ngStyle]="getStyle(msg)" [ngClass]="{'open': msg.visible}">
+    <div class="faq-item__top" (click)="toggleVisible(msg)">
+        <div class="faq-item__img">
+          <img src="../../assets/img/eye.svg" alt="">
+        </div>
+        <div class="faq-item__text">
+        {{msg.title}}
+        </div>
+        <div  class="quest-block__icon" style="margin-left: auto;">
+          <app-image-selector [category]="msg.category"></app-image-selector>
+        </div>
+    </div>
+    
+    <div class="faq-item__body">
+      <div style="max-height: 30em;overflow: overlay;display:flex;flex-direction: column-reverse;">
+        <div class="quest-block quest-block--last">
+          <div class="quest-block__text">
+          <span style="padding-top: 1.5em;">
+            Продолжить диалог
+          </span>
+            <div class="quest-block__form">
+              <form action="">
+                <textarea style="width: 98% !important;" name="" id="" #replay></textarea>
+                <div class="invalid-data" *ngIf="msg.showError">*Обязательное поле</div>
+                <div class="button button--arrow button--blue" (click)="replyToMsg(msg,replay)">
+                  <div class="button__text">отправить вопрос</div>
+                  <span class="button__icon"></span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="quest-wrap"  *ngFor="let msgText of msg.messages">
+          <div class="quest-block" style="padding-top: 1.5em;margin-right: 1em;">
+                  <div class="quest-block__text" [ngStyle]="getMsgStyle(msgText)">
+                      <p>
+                      {{msgText.msg}}
+                      </p>
+                  </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

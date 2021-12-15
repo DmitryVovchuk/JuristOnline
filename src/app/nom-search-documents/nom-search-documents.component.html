@@ -1,0 +1,69 @@
+<app-header></app-header>
+<div class="inner-wrap">
+    <div class="container">
+      <div class="breadcrumbs">
+          <br/>
+        <!-- <a href="index2.html">Юрист Онлайн</a>
+        <span>Личный кабинет пользователя</span> -->
+      </div>
+      <div class="pers-cab pers-cab--search">
+        <div class="contaoner">
+          <div class="pers-cab__wrap">
+            <app-no-member-menu></app-no-member-menu>
+            <div class="pers-cab__body">
+              <div class="pers-cab__content">
+                <div class="title title--min mb-4">
+                    ПОИСК ДОКУМЕНТОВ
+                </div>
+                <form action="" class="form">
+                  <div class="document-block document-block mb-0">
+                    <div class="document-block__left">
+                      <div class="document-name">
+                        <div class="document-name__icon">
+                          <img src="../../assets/img/doc7.svg" alt="doc" width="25" height="25" />
+                        </div>
+                        <div class="document-name__name">
+                          Ведите название докемента:
+                        </div>
+                      </div>
+                      <div class="document-block__input">
+                        <input type="text" name="" placeholder="Текст название документа" />
+                      </div>
+                    </div>
+                    <div class="document-block__right">
+                      <div class="form__select">
+                        <select name="name1" id="" class="js-anket-select js-select">
+                          <option value="reg">Специализация</option>
+                          <option value="ukuiy">Специализация</option>
+                        </select>
+                      </div>
+                      <div class="form__select">
+                        <select name="name2" id="" class="js-anket-select js-select">
+                          <option value="hliuliut">Специализация</option>
+                          <option value="hliulith">Специализация</option>
+                        </select>
+                      </div>
+                      <div class="form__select">
+                        <select name="name3" id="" class="js-anket-select js-select">
+                          <option value="heeetht">Специализация</option>
+                          <option value="hthweewt">Специализация</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <app-lawyer-documents [lawyerDocuments]="lawyerDocuments"></app-lawyer-documents>
+                  <button type="submit" class="button button--goon button--blue button--arrow">
+                    <span class="button__text">
+                      далее
+                    </span>
+                    <span class="button__icon"></span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>

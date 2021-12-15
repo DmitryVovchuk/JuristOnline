@@ -1,0 +1,25 @@
+
+   <app-header></app-header>
+   <div class="inner-wrap">
+      <div *ngIf="showProgressBar" class="spinner">
+        <mat-spinner ></mat-spinner>
+      </div>
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="index2.html">Юрист Онлайн</a>
+          <span>Активация пользователя</span>
+        </div>
+        <div class="inner-wrap__block">
+          <div class="title title--center title--med">
+            Активация пользователя
+          </div>
+          <div class="login">
+                <h3>{{message}}</h3>
+                <div ng-if="showCounter">Вы будете переведены на страницу входа через ...  {{counter}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+
+

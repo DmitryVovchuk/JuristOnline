@@ -1,0 +1,94 @@
+<app-header></app-header>
+<div class="inner-wrap">
+    <div class="container">
+      <div class="breadcrumbs">
+          <br/>
+        <!-- <a href="index2.html">Юрист Онлайн</a>
+        <span>Личный кабинет пользователя</span> -->
+      </div>
+      <div class="pers-cab">
+        <div class="contaoner">
+          <div class="pers-cab__wrap">
+            <app-client-side-menu [tabindex]='1'></app-client-side-menu>
+
+             <div class="pers-cab__body">
+              <div class="title title--min">
+                Faq
+              </div>
+              <div class="pers-cab__selects">
+                <form action="" class="form">
+                  <div class="form__select">
+                    <div class="form__select-label">
+                      Специализация
+                    </div>
+                    <select name="pravo" id="" class="js-anket-select js-select">
+                      <option value="pravo1"> Хозяйственное право</option>
+                      <option value="pravo2">Хозяйственное право</option>
+                    </select>
+                  </div>
+                  <div class="form__select">
+                    <div class="form__select-label">
+                      Город
+                    </div>
+                    <select name="city" id="" class="js-anket-select js-select">
+                      <option value="city1">Санкт-Петербург</option>
+                      <option value="city2">Санкт-Петербург</option>
+                    </select>
+                  </div>
+                  <div class="form__select">
+                    <div class="form__select-label">
+                      Трудовой стаж
+                    </div>
+                    <select name="stag" id="" class="js-anket-select js-select">
+                      <option value="stag1">17 лет</option>
+                      <option value="stag2">17 лет</option>
+                    </select>
+                  </div>
+                  <div class="form__select">
+                    <div class="form__select-label">
+                      Рейтинг
+                    </div>
+                    <select name="rate" id="" class="js-anket-select js-select">
+                      <option value="rate1">5</option>
+                      <option value="rate2">4</option>
+                    </select>
+                  </div>
+                </form>
+              </div>
+              <div class="pers-cab__faq">
+                <app-faq-list *ngIf="faqsHp.length" [faqs]="faqsHp"></app-faq-list>
+                <!-- <div class="faq-item js-faq-item">
+                  <div class="faq-item__top">
+                    <div class="faq-item__img">
+                      <img src="../img/more.svg" alt="" />
+                    </div>
+                    <div class="faq-item__text">
+                      Как грамотно составить расписку о получении денег и какие требования предъявляются к данному
+                      документу?
+                    </div>
+                  </div>
+                  <div class="faq-item__body">
+                    <img src="../img/pic.jpg" alt="pic" width="60" height="60" />
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab alias aliquam blanditiis
+                    dignissimos, eos esse eum expedita illo inventore labore magnam maxime nesciunt placeat
+                    recusandae saepe temporibus tenetur ullam voluptatum.
+                  </div>
+                </div> -->
+              </div>
+              <div class="pagination">
+                <a href="" class="pagination__prev"></a>
+                <a href="" class="pagination__dot"></a>
+                <a href="" class="pagination__dot"></a>
+                <a href="" class="pagination__dot"></a>
+                <a href="" class="pagination__dot"></a>
+                <a href="" class="pagination__dot"></a>
+                <a href="" class="pagination__dot"></a>
+                <a href="" class="pagination__next"></a>
+              </div>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>

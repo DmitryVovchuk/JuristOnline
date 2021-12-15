@@ -1,0 +1,103 @@
+<form action="" class="form" [formGroup]="generalAnketa">
+    <div class="dans-block">
+      <div class="simp-block">
+        <div class="simp-block__img">
+          <img src="../assets/img/man.svg" alt="">
+        </div>
+        <div class="simp-block__text">
+          Личные данные
+        </div>
+      </div>
+      <div class="dans-block__items">
+            <div class="input-block">
+              <span>Фамилия:</span>
+              <div class="input-block__field">
+                <input type="text" formControlName="lastName">
+              </div>
+              <div *ngIf="generalAnketa.controls.lastName.invalid && touched" class="invalid-data">
+                <div *ngIf="generalAnketa.controls.lastName.hasError('required')">*обязательное поле</div>
+                <div *ngIf="generalAnketa.controls.lastName.hasError('maxlength')">*максимум 30 сиволов</div>
+            </div>
+            </div>
+          <div class="input-block">
+            <span>Имя:</span>
+            <div class="input-block__field">
+              <input formControlName="firstName" type="text" name="name">
+              <div *ngIf="generalAnketa.controls.firstName.invalid && touched" class="invalid-data">
+                <div *ngIf="generalAnketa.controls.firstName.hasError('required')">*обязательное поле</div>
+                <div *ngIf="generalAnketa.controls.firstName.hasError('maxlength')">*максимум 30 сиволов</div>
+            </div>
+ 
+            </div>
+          </div>
+          <div class="input-block">
+            <span>Отчество:</span>
+            <div class="input-block__field">
+              <input formControlName="fatherName" type="text" name="fathname">
+              <div *ngIf="generalAnketa.controls.fatherName.invalid && touched" class="invalid-data">
+                <div *ngIf="generalAnketa.controls.fatherName.hasError('required')">*обязательное поле</div>
+                <div *ngIf="generalAnketa.controls.fatherName.hasError('maxlength')">*максимум 30 сиволов</div>
+            </div>
+            </div>
+          </div>
+          <div class="input-block">
+            <!-- <span>Дата рождения:</span> -->
+            <div class="input-block__field">
+              <mat-form-field>
+              <input matInput [matDatepicker]="picker" style="border:none" placeholder="Дата рождения:" formControlName="birthDay">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+              <!-- <input matInput [matDatepicker]="picker" formControlName="birthDay"> -->
+              <!-- <input  type="date" formControlName="birthDay"> -->
+              <div *ngIf="generalAnketa.controls.birthDay.invalid && touched" class="invalid-data">
+                <div *ngIf="generalAnketa.controls.birthDay.hasError('required')">*не корректная дата</div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="simp-block">
+        <div class="simp-block__img">
+          <img src="../assets/img/icon1.svg" alt="">
+        </div>
+        <div class="simp-block__text">
+          Месторасположение
+        </div>
+      </div>
+      <div class="dans-block__items">
+
+        
+        <div class="input-block">
+          <mat-form-field>
+            <mat-label>Выберите регион</mat-label>
+            <mat-select [(value)]="reg"  formControlName="region" (selectionChange)="regionSelect($event.value)">
+            <mat-option *ngFor="let reg of cities;" [value]="reg.region">
+                {{reg.region}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field> 
+        <div *ngIf="generalAnketa.controls.region.invalid && touched" class="invalid-data">
+          <div *ngIf="generalAnketa.controls.region.hasError('required')">*обязательное поле</div>
+        </div>
+      </div>
+
+      <div class="input-block">
+        <mat-form-field>
+            <mat-label>Выберите город</mat-label>
+            <mat-select [(value)]="ct" formControlName="city">
+            <mat-option *ngFor="let ct of selectedRegion?.cityList" [value]="ct">
+                {{ct}}
+            </mat-option>
+            </mat-select>
+        </mat-form-field> 
+        <div *ngIf="generalAnketa.controls.city.invalid && touched" class="invalid-data">
+          <div *ngIf="generalAnketa.controls.city.hasError('required')">*обязательное поле</div>
+        </div>
+      </div>
+
+      <div class="input-block"></div>
+    </div>
+    </div>
+  </form>

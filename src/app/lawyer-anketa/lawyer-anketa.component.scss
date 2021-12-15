@@ -1,0 +1,15 @@
+@import '../app-styling.scss';
+
+.notification-container{
+    height:13em;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    color:gray;
+    font-size: 2em;
+}
+.notification-item{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}

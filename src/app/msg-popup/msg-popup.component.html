@@ -1,0 +1,113 @@
+
+<div class="popup popup--ansv" id="item-answer">
+  <div *ngIf="showSpinner" class="spinner">
+    <mat-spinner></mat-spinner>
+  </div>
+    <h1 *ngIf="showMessage">Сообщение отправленно</h1>
+    <button class="close"  (click)="onNoClick()">X</button>
+    <form class='form-height' [formGroup]="msgForm">
+    <div class="popup__body">
+      <div class="popup__title">
+        Задать вопрос юристу
+      </div>
+      <div class="popup__form">
+        <div class="info-item">
+          <div class="simp-block">
+            <div class="simp-block__img">
+              <img src="../../assets/img/icon3.svg" alt="" />
+            </div>
+          </div>
+          <div fxLayout="column" class="title-form-field">
+          <mat-form-field style="padding-left: 11px;width: inherit;">
+            <mat-label>Тема обращения</mat-label>
+            <input formControlName="title" matInput >                                     
+          </mat-form-field>
+
+          <div *ngIf="msgForm.controls.title.invalid && msgForm.controls.title.touched" class="invalid-data">
+            <div *ngIf="msgForm.controls.title.hasError('required')">*обязательное поле</div>
+            <div *ngIf="msgForm.controls.title.hasError('maxlength')">*максимально возможное сообщение 5000 символов</div>
+            <div *ngIf="msgForm.controls.title.hasError('minlength')">*минимально возможное сообщение 10 символов</div>
+          </div>
+        </div>
+      </div>
+        <div class="ansv-top">
+          <div class="ansv-top__item">
+            <div class="info-item">
+              <div class="simp-block">
+                <div class="simp-block__img">
+                  <img src="../../assets/img/icon1.svg" alt="" />
+                </div>
+              </div>
+              <div class="info-item__body" style="width: 45%;">
+                <div fxLayout="column">
+                <mat-form-field>
+                  <ng-template matStepLabel>категория</ng-template>
+                  <mat-label>Выбор категория</mat-label>
+                  <mat-select formControlName="category" (selectionChange)="categorySelect($event.value)">
+                      <mat-option *ngFor="let cat of categoriesName" [value]="cat">
+                      {{cat}}
+                      </mat-option>
+                  </mat-select>
+                  </mat-form-field>
+                  <div *ngIf="msgForm.controls.category.invalid && msgForm.controls.category.touched" class="invalid-data">
+                    <div *ngIf="msgForm.controls.category.hasError('required')">*обязательное поле</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ansv-top__item">
+            <div class="info-item">
+              <div class="simp-block">
+                <div class="simp-block__img">
+                  <img src="../../assets/img/icon3.svg" alt="" />
+                </div>
+              </div>
+              <div class="info-item__body" style="width: 45%;">
+                <div fxLayout="column">
+                <mat-form-field>
+                  <ng-template matStepLabel>подкатегория</ng-template>
+                  <mat-label>Выбор категория</mat-label>
+                  <mat-select  formControlName="subcategory">
+                      <mat-option *ngFor="let sub of selectedCat"  [value]="sub">
+                      {{sub}}
+                      </mat-option>
+                  </mat-select>
+                  </mat-form-field>
+                  <div *ngIf="msgForm.controls.subcategory.invalid && msgForm.controls.subcategory.touched" class="invalid-data">
+                    <div *ngIf="msgForm.controls.subcategory.hasError('required')">*обязательное поле</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="popup__textarea">
+          <span>Текст Вашего вопроса:</span>
+          <textarea name="message" formControlName="message"></textarea>
+          <div *ngIf="msgForm.controls.message.invalid && msgForm.controls.message.touched" class="invalid-data">
+            <div *ngIf="msgForm.controls.message.hasError('required')">*обязательное поле</div>
+            <div *ngIf="msgForm.controls.message.hasError('maxlength')">*максимально возможное сообщение 5000 символов</div>
+            <div *ngIf="msgForm.controls.message.hasError('minlength')">*минимально возможное сообщение 10 символов</div>
+          </div>
+        </div>
+
+        <div class="popup__form-bottom">
+          <!-- <a href="" class="button button--medium button--white button--arrow">
+            <div class="button__text">
+              Подробнее о юристе
+            </div>
+            <span class="button__icon"></span>
+          </a> -->
+          <button type="submit" style="width: 100%;" class="button button--medium button--blue button--arrow" (click)="sendMsg()">
+            <span class="button__text">
+              Обратиться к юристу
+            </span>
+            <span class="button__icon"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  </div>

@@ -1,0 +1,105 @@
+<app-header></app-header>
+<div *ngIf="showProgressBar" class="spinner">
+  <mat-spinner ></mat-spinner>
+</div>
+<div class="inner-wrap">
+    <div class="container">
+      <div class="breadcrumbs">
+          <br/>
+        <!-- <a href="index2.html">Юрист Онлайн</a>
+        <span>Личный кабинет пользователя</span> -->
+      </div>
+      <div class="pers-cab pers-cab--dans  pers-cab--qusetions">
+        <div class="contaoner">
+          <div class="pers-cab__wrap">
+            <app-jurist-side-menu [tabindex]='4'></app-jurist-side-menu>
+            <div class="pers-cab__body">
+              <div class="pers-cab__content">
+                <div class="title title--min">
+                  Часто задаваемые вопросы
+                </div>
+                <div class="open-table__bottom"  style="padding: 25px 25px !important;" *ngIf="!showForm">
+                  <div class="dans-block__bottom">
+                      <a (click)="showForm=!showForm;" style="width: 100% !important;"  class="button button--goon button--blue">
+                      <span class="button__text">
+                        Добавить новый вопрос/ответ
+                      </span>
+                      </a>
+                   </div>
+                </div>
+                <br>
+                <form action="" class="form" [formGroup]="faq" *ngIf="showForm">
+                  <button class="close"  (click)="showForm=false;">X</button>
+                  <div class="dans-block">
+                    <div class="dans-block__items">
+                      <div class="input-block">
+                        <mat-form-field>
+                          <mat-label>Выбор категория</mat-label>
+                          <mat-select [value]="category"  formControlName="categ">
+                          <mat-option *ngFor="let category of categories" [value]="category">
+                              {{category}}
+                          </mat-option>
+                          </mat-select>
+                      </mat-form-field>
+                      <div *ngIf="faq.controls.categ.invalid && touched" class="invalid-data">
+                        <div *ngIf="faq.controls.categ.hasError('required')">*обязательное поле</div>
+                      </div>
+                      </div>
+                    </div>
+                    <div class="quest-block quest-block--quest">
+                      <div class="quest-block__icon">
+                        <img src="../../assets/img/quest.svg" alt="" />
+                      </div>
+                      <div class="quest-block__text">
+                        <span>
+                          Вопрос
+                        </span>
+                        <div class="quest-block__form">
+                            <textarea name="question" formControlName="question"></textarea>
+                            <div *ngIf="faq.controls.question.invalid && touched" class="invalid-data">
+                              <div *ngIf="faq.controls.question.hasError('required')">*обязательное поле</div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="quest-block quest-block--answer">
+                      <div class="quest-block__icon">
+                        <img src="../../assets/img/quest.svg" alt="" />
+                      </div>
+                      <div class="quest-block__text">
+                        <span>
+                          Ваш ответ
+                        </span>
+                        <div class="quest-block__form">
+                            <textarea name="answer" formControlName="answer"></textarea>
+                        </div>
+                        <div *ngIf="faq.controls.answer.invalid && touched" class="invalid-data">
+                          <div *ngIf="faq.controls.answer.hasError('required')">*обязательное поле</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="invalid-data" *ngIf="faqSaveError">{{faqSaveError}}</div>
+                    <div class="completed-successfully" *ngIf="faqCompleted">{{faqCompleted}}</div>
+                    <div class="dans-block__bottom">
+                      <button type="submit" (click)="saveToServer()" class="button button--save button--blue">
+                        <span class="button__image">
+                          <img src="../../assets/img/save.svg" alt="" width="20" height="20" />
+                        </span>
+                        <span class="button__text">
+                          сохранить данные
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                <div class="saved-answer" style="overflow: overlay;height: 30em;margin-top: 0px;">
+                  <app-faq-list *ngIf="faqsHp.length" (editThisFaq)="editFaq($event)"  [isLawyer]="true" [faqs]="faqsHp"></app-faq-list>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<app-footer></app-footer>

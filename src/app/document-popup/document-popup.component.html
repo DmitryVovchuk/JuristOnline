@@ -1,0 +1,58 @@
+<button class="close" mat-button (click)="onNoClick()">X</button>
+<div *ngIf="showProgressBar" class="popup_spinner">
+    <mat-spinner></mat-spinner>
+</div>
+    <div class="open-table js-table-block">
+        <div class="open-table__top">
+        <div class="open-table__left">
+            <span>Юрист:</span>
+            <div class="open-table__user">
+            <div class="open-table__user-img">
+                <img [src]="data.lawyer.avatar" alt="" />
+            </div>
+            <span>{{ name }}</span>
+            </div>
+        </div>
+        <div class="open-table__right">
+            <div class="open-table__itm">Скачено: <span>{{data.doc.counterDownloaded}}</span></div>
+            <div class="open-table__itm">Просмотрено: <span>{{data.doc.counterView}}</span></div>
+            <div class="open-table__itm">Цена: <span>{{data.doc.price}}</span></div>
+            <a href="" class="open-table__last">
+            <img src="../../assets/img/basket.svg" alt="" />
+            </a>
+        </div>
+        </div>
+        <div class="open-table__bottom"  style="padding: 25px 25px !important;" *ngIf="!showDocumentFiller && showButton">
+            <div class="dans-block__bottom">
+                <a (click)="fillDocument()" style="width: 100% !important;"  class="button button--goon button--blue">
+                  <span class="button__text">
+                    Заполнить документ
+                  </span>
+                </a>
+            </div>
+            <h4 style="text-align: center">{{data.doc.subtype}}</h4>
+            <h6 style="text-align: center; margin: 20px 0">
+                {{data.doc.discription}}
+            </h6>
+        </div>
+        <div class="open-table__bottom" style="padding: 40px 25px 0px 25px !important;"  *ngIf="showDocumentFiller">
+            <button class="close"  (click)="showDocumentFiller=!showDocumentFiller">X</button>
+            <app-document-filler (showSpinner)="showSpinner($event)" (searchWord)="serchVarieables($event)" [fieldArr]='data.doc.clientFillWord' [doc] = 'data.doc'></app-document-filler>
+        </div>
+        <!-- <div class="open-table__doc"> -->
+        <div class="document-view">
+
+        <p class="noselect" >
+            <pdf-viewer #pdfComponent [src]="data.doc.pdfExample" 
+                        [render-text]="true"
+                        [show-all]="true"
+                        [autoresize]="true"
+                        [show-borders]="true"
+                        [zoom-scale]="'page-width'"
+                        [zoom]="1.5"
+                        (page-rendered)="pageRendered($event)"
+                        style="display: block;height:auto;width:100%;">
+            </pdf-viewer>
+        </p>
+        </div>
+    </div>

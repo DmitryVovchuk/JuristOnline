@@ -1,0 +1,25 @@
+<app-header></app-header>
+<div class="inner-wrap">
+    <div class="container">
+      <div class="breadcrumbs">
+          <br/>
+      </div>
+
+      <div class="contaoner">            
+        <div class="pers-cab__wrap" style="min-height: 40em">
+                        <app-jurist-side-menu [tabindex]='2'></app-jurist-side-menu>
+                        <div class="pers-cab__body" *ngIf="!showDocumentEdit">
+                          <div class="title title--min">
+                            Мои документы
+                          </div>
+                            <app-lawyer-documents (showDocumentEditor)="showEditor($event)" [showSearchBar]="true" [isLawyerMode]="true" [lawyerDocuments]="lawyerDocuments"></app-lawyer-documents>
+                         </div>
+                         <div *ngIf="showDocumentEdit">
+                            <button class="close"  (click)="showDocumentEdit=!showDocumentEdit">X</button>
+                            <app-document-creator [documentForEdit]='docForEdit'></app-document-creator>
+                        </div>
+        </div>
+      </div>
+
+</div>
+<app-footer></app-footer>

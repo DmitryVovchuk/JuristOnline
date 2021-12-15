@@ -1,0 +1,48 @@
+<div class="open-pc js-open-pc button button--blue button--arrow" (click)="showPopUp()">
+  личный кабинет
+  <span class="button__icon"></span>
+</div>
+<div class="pers-cab__sidebar js-sidebar" [ngClass]="{'open': showMenu}">
+    <div class="close-sidebar" (click)="closePopUp()">
+      <img src="../../assets/img/close.svg" alt="" />
+    </div>
+
+    <a [routerLink]="['../lawyerAnketa']" class="pers-cab__link pers-cab__link--ank" [ngClass]="{'active': activeTab[0]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Моя анкета</span>
+    </a>
+    <a [routerLink]="['../newDocument']" class="pers-cab__link pers-cab__link--new-doc" [ngClass]="{'active': activeTab[1]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text">Добавить новый документ</span>
+    </a>
+    <a [routerLink]="['../lawyerDocuments']" class="pers-cab__link pers-cab__link--my-doc" [ngClass]="{'active': activeTab[2]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text"> Мои документы</span>
+    </a>
+    <a [routerLink]="['../editAnketa']" class="pers-cab__link pers-cab__link--edit" [ngClass]="{'active': activeTab[3]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text"> Редактировать анкету</span>
+    </a>
+    <a [routerLink]="['../editFaqs']" class="pers-cab__link pers-cab__link--quest" [ngClass]="{'active': activeTab[4]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text"> Часто задаваемые вопросы</span>
+    </a>
+    <a [routerLink]="['../myMessages']" class="pers-cab__link pers-cab__link--sms" [ngClass]="{'active': activeTab[5]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text" [matBadgeHidden]="msgCount?.newLawyerMsgCount == 0" [matBadge]="msgCount?.newLawyerMsgCount"> Мой сообщения</span>
+    </a>
+    <a [routerLink]="['../lawyerBalance']" class="pers-cab__link pers-cab__link--pock" [ngClass]="{'active': activeTab[6]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text"> Мой кошелёк</span>
+    </a>
+    <a [routerLink]="['../adminMessages']" class="pers-cab__link pers-cab__link--sms" [ngClass]="{'active': activeTab[7]}">
+      <span class="pers-cab__link-img"></span>
+      <span class="pers-cab__link-text" [matBadgeHidden]="msgCount?.newLawyerAdminCount==0" [matBadge]="msgCount?.newLawyerAdminCount"> Написать администрации</span>
+    </a>
+    <a [routerLink]="['/']" class="logout-link">
+      <div class="logout-link__icon">
+        <img src="../../assets/img/close-gray.svg" alt="" width="16" height="16" />
+        <span>Выйти</span>
+      </div>
+    </a>
+</div>

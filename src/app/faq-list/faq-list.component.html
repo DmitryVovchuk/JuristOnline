@@ -1,0 +1,26 @@
+<div class="faq-block__accordion">
+    <div class="faq-item js-faq-item" *ngFor="let faq of faqs;let i=index;" [ngStyle]="getStyle(faq)" [ngClass]="{'open': !faqvisible[i]}" (click)="toggleContent(i)">
+      <div class="faq-item__top">
+        <div class="faq-item__img">
+          <img src="../assets/img/more.svg" alt="" />
+          
+          
+        </div>
+        <div class="faq-item__text">
+            {{faq.question}}
+        </div>
+
+          <!-- *ngIf="!isLawyer" -->
+          <div  class="quest-block__icon" style="margin-left: auto;">
+            <app-image-selector [category]="faq.categ"></app-image-selector>
+          </div>
+          <div *ngIf="isLawyer" class="quest-block__icon"  matTooltip="Редактировать вопрос" matTooltipClass="fontSize" (click)="editFaq(faq)"  style="margin-left: 1em;">
+            <img style="height: 2em;" src="../assets/img/quest.svg" alt="">
+          </div>
+      </div>
+      <div class="faq-item__body open">
+        <img [src]="faq.authorImg" alt="pic" width="60" height="60" />
+        {{faq.answer}}
+      </div>
+    </div>
+</div>

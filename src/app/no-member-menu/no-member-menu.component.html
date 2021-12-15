@@ -1,0 +1,32 @@
+<div class="open-pc js-open-pc button button--blue button--arrow" (click)="showPopUp()">
+    личный кабинет
+    <span class="button__icon"></span>
+  </div>
+  <div class="pers-cab__sidebar js-sidebar" [ngClass]="{'open': showMenu}">
+      <div class="close-sidebar" (click)="closePopUp()">
+        <img src="../../assets/img/close.svg" alt="" />
+      </div>
+      <div *ngFor="let categ of categories">
+        <a class="pers-cab__link pers-cab__link--ank active" (click)="categ.expended=!categ.expended;"> 
+            <span class="pers-cab__link-img">
+                <img src="{{categ.icon}}" alt="" width="16" height="16" />
+            </span>
+            <span class="pers-cab__link-text">{{categ.category}}</span>
+        </a>
+        <div *ngIf="categ.expended">
+            <mat-radio-group [(ngModel)]="categ.selection">
+            <mat-radio-button class="column-direction" *ngFor="let sub of categ.subcategory" >
+            {{sub.category}}
+            </mat-radio-button>
+            <br/>
+        </mat-radio-group>
+        </div>
+      </div> 
+      <a [routerLink]="['/']" class="logout-link">
+        <div class="logout-link__icon">
+          <img src="../../assets/img/close-gray.svg" alt="" width="16" height="16" />
+          <span>Выйти</span>
+        </div>
+      </a>
+  </div>
+  

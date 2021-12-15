@@ -1,0 +1,128 @@
+<app-header></app-header>
+<div *ngIf="showProgressBar" class="spinner">
+  <mat-spinner ></mat-spinner>
+</div>
+<div class="inner-wrap">
+    <div class="container">
+      <div class="breadcrumbs">
+          <br/>
+        <!-- <button href="index2.html">Юрист Онлайн</button>
+        <span>Личный кабинет юриста</span> -->
+      </div>
+      <div class="pers-cab pers-cab--dans  pers-cab--admin">
+        <div class="contaoner">
+          <div class="pers-cab__wrap">
+            <app-jurist-side-menu [tabindex]='3'></app-jurist-side-menu>
+            <div class="pers-cab__body">
+
+                <div class="pers-cab__content">
+                  <div class="title title--min">
+                    Редактировать анкету
+                  </div>
+                    <mat-horizontal-stepper linear #stepper>
+                        <mat-step [stepControl]="generalData">
+                          <ng-template matStepLabel>Персональные данные</ng-template>
+                          <app-anketa-general #general></app-anketa-general>
+                          <div class="dans-block__bottom">
+                            <button (click)="callToChildSave('general',stepper)" type="submit" class="button button--goon button--blue button--arrow">
+                              <span class="button__text">
+                                далее
+                              </span>
+                              <span class="button__icon"></span>
+                            </button>
+                          </div>
+                        </mat-step>
+                      
+                        <mat-step [stepControl]="avatarCrop">
+                          <ng-template matStepLabel>Загрузка Фото</ng-template>
+                          <div *ngIf="showCropError">
+                            <h3 class="invalid-data">*{{cropMessage}}</h3>
+                          </div>
+                          <app-crop-avatar #crop></app-crop-avatar>
+
+                          <div class="dans-block__bottom">
+                            <button class="button button--goon button--blue button--back button--arrow " matStepperPrevious>
+                              <span class="button__icon"></span>
+                              <span class="button__text">
+                                        вернуться
+                                </span>
+                            </button>
+                            <button (click)='saveAvatar(stepper)' type="submit" class="button button--goon button--blue button--arrow">
+                              <span class="button__text">
+                                далее
+                              </span>
+                              <span class="button__icon"></span>
+                            </button>
+                          </div>                     
+                        </mat-step>
+                      
+                        <mat-step [stepControl]="lawyerData" >
+                          <ng-template matStepLabel>Профессиональные данные</ng-template>
+                          <app-anketa-lawer #prof></app-anketa-lawer>
+
+                          <div class="dans-block__bottom">
+                            <button class="button button--goon button--blue button--back button--arrow " matStepperPrevious>
+                              <span class="button__icon"></span>
+                              <span class="button__text">
+                                        вернуться
+                                </span>
+                            </button>
+                            <button (click)="callToChildSave('prof',stepper)" type="submit" class="button button--goon button--blue button--arrow">
+                              <span class="button__text">
+                                далее
+                              </span>
+                              <span class="button__icon"></span>
+                            </button>
+                          </div>
+                        </mat-step>
+                      
+                        <mat-step [stepControl]="contactData" >
+                          <ng-template matStepLabel>Контактные данные</ng-template>
+                          <app-anketa-contacts #contact></app-anketa-contacts>
+
+                          <div class="dans-block__bottom">
+                            <button class="button button--goon button--blue button--back button--arrow " matStepperPrevious>
+                              <span class="button__icon"></span>
+                              <span class="button__text">
+                                        вернуться
+                                </span>
+                            </button>
+                            <button (click)="callToChildSave('contact',stepper)" type="submit" class="button button--goon button--blue button--arrow">
+                              <span class="button__text">
+                                далее
+                              </span>
+                              <span class="button__icon"></span>
+                            </button>
+                          </div>
+                        </mat-step>
+                      
+                        <mat-step [stepControl]="lawyerGrammar" >
+                          <ng-template matStepLabel>Дипломы и грамоты</ng-template>
+                          <app-anketa-lawyer-diplom #diploms></app-anketa-lawyer-diplom>
+
+                          <div class="dans-block__bottom">
+                            <button class="button button--goon button--blue button--back button--arrow " matStepperPrevious>
+                              <span class="button__icon"></span>
+                              <span class="button__text">
+                                        вернуться
+                                </span>
+                            </button>
+                            <button type="button" (click)="saveToServer()" class="button button--save button--blue js-save">
+                                <span class="button__image">
+                                  <img src="../assets/img/save.svg" alt="" width="20" height="20">
+                                </span>
+                             <span class="button__text">
+                                  сохранить данные
+                                </span>
+                           </button>
+                          </div>
+                        </mat-step>
+                      </mat-horizontal-stepper>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<app-footer></app-footer>

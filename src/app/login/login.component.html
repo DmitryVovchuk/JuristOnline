@@ -1,0 +1,85 @@
+
+   <app-header (scrollToView)="goToBlock($event[0])"></app-header>
+   <div class="inner-wrap">
+      <div *ngIf="showProgressBar" class="spinner">
+        <mat-spinner ></mat-spinner>
+      </div>
+      <div class="container">
+        <div class="breadcrumbs">
+          <a href="index2.html">Юрист Онлайн</a>
+          <span>Вход</span>
+        </div>
+        <div class="inner-wrap__block">
+          <div class="title title--center title--med">
+            Вход в личный кабинет
+          </div>
+          <div class="login">
+            <form class="form form--login" [formGroup]="loginForm">
+              <div class="form__items">
+                <div class="form__item">
+                    <span>Электронная почта</span>
+                    <input formControlName="email" type="tel" name="user-mail" placeholder="Электронная почта*" />
+                    <div *ngIf="submitted && f.email.invalid" class="invalid-form-input">
+                      <div *ngIf="f.email.errors.required">*Обязательное поле</div>
+                      <div *ngIf="f.email.errors.pattern">*не правельный меил</div>
+                    </div>
+                </div>
+                <div class="form__item">
+                    <span>Пароль</span>
+                    <input formControlName="password" type="password" name="user-password" placeholder="Пароль*" />
+                    <div *ngIf="submitted && f.password.invalid" class="invalid-form-input">
+                      <div *ngIf="!!f.password.errors.minlength">*Минимум 6 сиволов</div>
+                      <div *ngIf="f.password.errors.required">*Обязательное поле</div>     
+                    </div>
+                </div>
+                <div class="form__submit">
+                  <button class="button button--submit button--blue" (click)="login()">
+                    <span class="button__text">
+                      Вход
+                    </span>
+                  </button>
+                </div>
+                <br/>
+                <div class="invalid-data err-answer" *ngIf="showError">{{errorMessage}}</div>
+              </div>
+            </form>
+            <div class="form__items" style="justify-content: center;">
+            <span style="display: flex;justify-content:center;">Через социальные сети:</span>
+
+            <div class="form__item" style="width: 13em;">
+              <a href="/auth/google" class="btn google-btn"><span class="fa fa-google btn-social"></span></a>
+            </div>
+            <div class="form__item" style="width: 13em;">
+              <a href="/auth/vkontakte"class="btn vk-btn"><span class="fa fa-vk btn-social"></span></a>
+            </div>
+            <div class="form__item" style="width: 13em;">
+              <a href="/auth/ok" class="btn ok-btn"><span class="fa fa-odnoklassniki btn-social"></span></a>
+            </div>
+            <div class="form__item" style="width: 13em;">
+              <a href="/auth/facebook" class="btn facebook-btn"><span class="fa fa-facebook btn-social"></span></a>
+            </div>
+          </div>
+          <!-- </div> -->
+            <!-- <div class="soc-widget">
+              <span>Через социальные сети:</span>
+              <div class="soc-widget__body">
+                <a href="/auth/google"><span class="fa fa-google"></span> SignIn with Google</a>
+                <a href="/auth/vkontakte"><span class="fa fa-vkontakte"></span> SignIn with VK</a>
+                <a href="/auth/ok"><span class="fa fa-odnoklassniki"></span> SignIn with OK</a>
+              </div>
+            </div> -->
+
+            <div class="login__bottom">
+              <a href="" class="simple-link">Нет профиля на Юрист Онлайн ?</a>
+              <a [routerLink]="['/registration']" class="button button--submit button--blue">
+                <span class="button__text">
+                  Зарегистрироваться
+                </span>
+              </a>
+              <a href="" class="simple-link">Забыли пароль ?</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>

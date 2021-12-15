@@ -1,0 +1,43 @@
+<owl-carousel-o [options]="customOptions">
+ 
+    <ng-template carouselSlide *ngFor="let slide of slidesStore" [id]="slide.id">
+        <div class="ankets-block__items">
+            <div class="ankets-item">
+              <div class="ankets-item__wrap">
+                <div class="ankets-item__left">
+                  <div class="ankets-item__img">
+                    <img [src]="slide.src" [alt]="slide.alt" [title]="slide.title">
+                    <!-- <img src="../assets/img/top-img.jpg" alt=""> -->
+                  </div>
+                  <div class="ankets-item__under-img">
+                    <img src="../assets/img/bag.svg" alt="">
+                    <span>21 год</span>
+                  </div>
+                  <a href="" class="ankets-item__more">
+                    Подробнее
+                  </a>
+                </div>
+                <div class="ankets-item__right">
+                  <div class="ankets-item__name">
+                    Артем Сергеев
+                  </div>
+                  <div class="ankets-item__location">
+                    <img src="../assets/img/point.svg" alt="">
+                    <span>Санкт Петербург</span>
+                  </div>
+                  <div class="ankets-item__pravo">
+                    <div>Хозяйственное право</div>
+                    <div> Гражданские правоотношения</div>
+                    <div>Коммерческое право</div>
+                  </div>
+                  <a href="" class="ankets-item__link">
+                    Обратиться к юристу
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+      
+    </ng-template>
+   
+</owl-carousel-o>
